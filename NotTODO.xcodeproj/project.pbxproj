@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		37FBD1562C00298F0051B214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1552C00298F0051B214 /* AppDelegate.swift */; };
 		37FBD1582C00298F0051B214 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1572C00298F0051B214 /* SceneDelegate.swift */; };
-		37FBD15A2C00298F0051B214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1592C00298F0051B214 /* ViewController.swift */; };
+		37FBD15A2C00298F0051B214 /* NotTODOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1592C00298F0051B214 /* NotTODOViewController.swift */; };
 		37FBD15D2C00298F0051B214 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 37FBD15C2C00298F0051B214 /* Base */; };
 		37FBD15F2C0029930051B214 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37FBD15E2C0029930051B214 /* Assets.xcassets */; };
 		37FBD1622C0029930051B214 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 37FBD1612C0029930051B214 /* Base */; };
+		37FBD16A2C007DB00051B214 /* NotTODOTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1692C007DAF0051B214 /* NotTODOTableViewCell.swift */; };
+		37FBD16C2C00833C0051B214 /* AddNotTODOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16B2C00833C0051B214 /* AddNotTODOController.swift */; };
+		37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16D2C0083F60051B214 /* NotTODO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		37FBD1522C00298F0051B214 /* NotTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37FBD1552C00298F0051B214 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37FBD1572C00298F0051B214 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		37FBD1592C00298F0051B214 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		37FBD1592C00298F0051B214 /* NotTODOViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOViewController.swift; sourceTree = "<group>"; };
 		37FBD15C2C00298F0051B214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37FBD15E2C0029930051B214 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37FBD1612C0029930051B214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		37FBD1632C0029930051B214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37FBD1692C007DAF0051B214 /* NotTODOTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOTableViewCell.swift; sourceTree = "<group>"; };
+		37FBD16B2C00833C0051B214 /* AddNotTODOController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNotTODOController.swift; sourceTree = "<group>"; };
+		37FBD16D2C0083F60051B214 /* NotTODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,13 +62,16 @@
 		37FBD1542C00298F0051B214 /* NotTODO */ = {
 			isa = PBXGroup;
 			children = (
+				37FBD1692C007DAF0051B214 /* NotTODOTableViewCell.swift */,
 				37FBD1552C00298F0051B214 /* AppDelegate.swift */,
 				37FBD1572C00298F0051B214 /* SceneDelegate.swift */,
-				37FBD1592C00298F0051B214 /* ViewController.swift */,
+				37FBD1592C00298F0051B214 /* NotTODOViewController.swift */,
 				37FBD15B2C00298F0051B214 /* Main.storyboard */,
 				37FBD15E2C0029930051B214 /* Assets.xcassets */,
 				37FBD1602C0029930051B214 /* LaunchScreen.storyboard */,
 				37FBD1632C0029930051B214 /* Info.plist */,
+				37FBD16B2C00833C0051B214 /* AddNotTODOController.swift */,
+				37FBD16D2C0083F60051B214 /* NotTODO.swift */,
 			);
 			path = NotTODO;
 			sourceTree = "<group>";
@@ -138,7 +147,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37FBD15A2C00298F0051B214 /* ViewController.swift in Sources */,
+				37FBD16C2C00833C0051B214 /* AddNotTODOController.swift in Sources */,
+				37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */,
+				37FBD15A2C00298F0051B214 /* NotTODOViewController.swift in Sources */,
+				37FBD16A2C007DB00051B214 /* NotTODOTableViewCell.swift in Sources */,
 				37FBD1562C00298F0051B214 /* AppDelegate.swift in Sources */,
 				37FBD1582C00298F0051B214 /* SceneDelegate.swift in Sources */,
 			);
