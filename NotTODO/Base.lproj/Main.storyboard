@@ -20,6 +20,16 @@
                                 <rect key="frame" x="0.0" y="201" width="393" height="517"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotTODOCell" id="YZH-81-9K0">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="44.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YZH-81-9K0" id="M9O-AE-6qK">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="44.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="HDn-mU-ydf"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="zol-0C-aLC"/>
@@ -31,7 +41,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
                                 <connections>
-                                    <segue destination="yFd-V4-8J6" kind="show" id="cdj-lK-dBQ"/>
+                                    <segue destination="yFd-V4-8J6" kind="show" identifier="AddReminderSegue" id="cdj-lK-dBQ"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pNE-Fz-o9f">
@@ -73,7 +83,7 @@
         <!--NotTODODetailview-->
         <scene sceneID="8ZK-Tk-685">
             <objects>
-                <viewController title="NotTODODetailview" id="yFd-V4-8J6" customClass="NotTODODetailViewController" customModule="NotTODO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="NotTODODetailview" id="yFd-V4-8J6" customClass="AddNotTODOController" customModule="NotTODO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G6P-P0-e6o" customClass="NotTODOTableViewCell" customModule="NotTODO" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,7 +101,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="保存"/>
                                 <connections>
-                                    <action selector="saveChanges:" destination="yFd-V4-8J6" eventType="touchUpInside" id="zYy-tB-ubI"/>
+                                    <action selector="saveNotTODO:" destination="yFd-V4-8J6" eventType="touchUpInside" id="zrX-ut-JGN"/>
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="TaH-HX-zSo">
