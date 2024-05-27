@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		37FB82752C01934900E6ED0D /* NotTODODetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FB82742C01934900E6ED0D /* NotTODODetailViewController.swift */; };
 		37FB827E2C03415E00E6ED0D /* NotTODOTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */; };
 		37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */; };
 		37FBD1562C00298F0051B214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1552C00298F0051B214 /* AppDelegate.swift */; };
@@ -21,7 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		37FB82742C01934900E6ED0D /* NotTODODetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODODetailViewController.swift; sourceTree = "<group>"; };
 		37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOTableViewCell.swift; sourceTree = "<group>"; };
 		37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotTODOTableViewCell.xib; sourceTree = "<group>"; };
 		37FBD1522C00298F0051B214 /* NotTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,7 +73,6 @@
 				37FBD1632C0029930051B214 /* Info.plist */,
 				37FBD16B2C00833C0051B214 /* AddNotTODOController.swift */,
 				37FBD16D2C0083F60051B214 /* NotTODO.swift */,
-				37FB82742C01934900E6ED0D /* NotTODODetailViewController.swift */,
 				37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */,
 				37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */,
 			);
@@ -155,7 +152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				37FBD16C2C00833C0051B214 /* AddNotTODOController.swift in Sources */,
-				37FB82752C01934900E6ED0D /* NotTODODetailViewController.swift in Sources */,
 				37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */,
 				37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */,
 				37FBD15A2C00298F0051B214 /* NotTODOViewController.swift in Sources */,

@@ -1,9 +1,3 @@
-//
-//  AddNotTODO.swift
-//  NotTODO
-//
-//  Created by Yoshito Usui on 2024/05/24.
-//
 
 import UIKit
 
@@ -18,6 +12,7 @@ class AddNotTODOController: UIViewController {
         let date = datePicker.date
         let NotTODO = NotTODO(title: title, date: date)
         onSave?(NotTODO)
+        print(NotTODO)
         navigationController?.popViewController(animated: true)
     }
 }
