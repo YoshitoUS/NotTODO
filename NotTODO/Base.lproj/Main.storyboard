@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--NotTODOViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="NotTODOViewController" id="BYZ-38-t0r" userLabel="Table View Controller" customClass="NotTODOViewController" customModule="NotTODO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="NotTODOViewController" id="BYZ-38-t0r" userLabel="NotTODOViewController" customClass="NotTODOViewController" customModule="NotTODO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="NotTODOView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="-193.12977099236642" y="-71.126760563380287"/>
         </scene>
-        <!--NotTODODetailview-->
+        <!--AddNotTODOController-->
         <scene sceneID="8ZK-Tk-685">
             <objects>
-                <viewController title="NotTODODetailview" id="yFd-V4-8J6" customClass="AddNotTODOController" customModule="NotTODO" sceneMemberID="viewController">
+                <viewController title="NotTODODetailview" id="yFd-V4-8J6" userLabel="AddNotTODOController" customClass="AddNotTODOController" customModule="NotTODO" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G6P-P0-e6o" customClass="NotTODOTableViewCell" customModule="NotTODO" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
