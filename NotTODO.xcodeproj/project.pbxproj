@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		37FB827E2C03415E00E6ED0D /* NotTODOTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */; };
 		37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */; };
+		37FB82852C04DEF000E6ED0D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 37FB82842C04DEF000E6ED0D /* RealmSwift */; };
+		37FB82882C04F03900E6ED0D /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 37FB82842C04DEF000E6ED0D /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		37FBD1562C00298F0051B214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1552C00298F0051B214 /* AppDelegate.swift */; };
 		37FBD1582C00298F0051B214 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1572C00298F0051B214 /* SceneDelegate.swift */; };
 		37FBD15A2C00298F0051B214 /* NotTODOViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD1592C00298F0051B214 /* NotTODOViewController.swift */; };
@@ -18,6 +20,20 @@
 		37FBD16C2C00833C0051B214 /* AddNotTODOController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16B2C00833C0051B214 /* AddNotTODOController.swift */; };
 		37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16D2C0083F60051B214 /* NotTODO.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37FB82872C04F01400E6ED0D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				37FB82882C04F03900E6ED0D /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOTableViewCell.swift; sourceTree = "<group>"; };
@@ -39,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37FB82852C04DEF000E6ED0D /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,12 +106,16 @@
 				37FBD14E2C00298F0051B214 /* Sources */,
 				37FBD14F2C00298F0051B214 /* Frameworks */,
 				37FBD1502C00298F0051B214 /* Resources */,
+				37FB82872C04F01400E6ED0D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = NotTODO;
+			packageProductDependencies = (
+				37FB82842C04DEF000E6ED0D /* RealmSwift */,
+			);
 			productName = NotTODO;
 			productReference = 37FBD1522C00298F0051B214 /* NotTODO.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 37FBD1492C00298F0051B214;
+			packageReferences = (
+				37FB82812C04DEF000E6ED0D /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 37FBD1532C00298F0051B214 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,10 +259,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -292,9 +318,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-Objc";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -320,7 +348,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = app.Usui.Crayon.NotTODO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -348,7 +378,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = app.Usui.Crayon.NotTODO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -379,6 +411,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37FB82812C04DEF000E6ED0D /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		37FB82842C04DEF000E6ED0D /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37FB82812C04DEF000E6ED0D /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 37FBD14A2C00298F0051B214 /* Project object */;
 }
