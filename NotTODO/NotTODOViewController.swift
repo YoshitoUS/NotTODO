@@ -32,7 +32,6 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotTODOCell", for: indexPath) as! NotTODOTableViewCell
         let notTODO = notTODOs[indexPath.row]
         cell.titleLabel.text = notTODO.title
-        cell.dateLabel.text = notTODO.date.description
         return cell
     }
     

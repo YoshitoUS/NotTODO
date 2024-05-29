@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		379E1A272C06C33A00AFD3FC /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A262C06C33A00AFD3FC /* CheckBox.swift */; };
 		37FB827E2C03415E00E6ED0D /* NotTODOTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */; };
 		37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */; };
 		37FB82852C04DEF000E6ED0D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 37FB82842C04DEF000E6ED0D /* RealmSwift */; };
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		379E1A262C06C33A00AFD3FC /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOTableViewCell.swift; sourceTree = "<group>"; };
 		37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotTODOTableViewCell.xib; sourceTree = "<group>"; };
 		37FBD1522C00298F0051B214 /* NotTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,6 +94,7 @@
 				37FBD16D2C0083F60051B214 /* NotTODO.swift */,
 				37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */,
 				37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */,
+				379E1A262C06C33A00AFD3FC /* CheckBox.swift */,
 			);
 			path = NotTODO;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				37FBD16C2C00833C0051B214 /* AddNotTODOController.swift in Sources */,
 				37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */,
 				37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */,
+				379E1A272C06C33A00AFD3FC /* CheckBox.swift in Sources */,
 				37FBD15A2C00298F0051B214 /* NotTODOViewController.swift in Sources */,
 				37FBD1562C00298F0051B214 /* AppDelegate.swift in Sources */,
 				37FBD1582C00298F0051B214 /* SceneDelegate.swift in Sources */,

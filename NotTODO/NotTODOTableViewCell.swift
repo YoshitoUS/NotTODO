@@ -6,7 +6,7 @@ import UIKit
 
 class NotTODOTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var checkBox: CheckBox!
     
     override func awakeFromNib() {
         super.awakeFromNib()
