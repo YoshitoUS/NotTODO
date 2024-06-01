@@ -24,10 +24,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4u-xM-MFb" customClass="CheckBox" customModule="NotTODO" customModuleProvider="target">
-                        <rect key="frame" x="16" y="4" width="75" height="35"/>
+                        <rect key="frame" x="42" y="15" width="24" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain"/>
                     </button>
                 </subviews>
             </tableViewCellContentView>

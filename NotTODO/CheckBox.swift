@@ -1,10 +1,3 @@
-//
-//  CheckBoxViewController.swift
-//  NotTODO
-//
-//  Created by Yoshito Usui on 2024/05/29.
-//
-
 import UIKit
 
 class CheckBox: UIButton {
@@ -14,26 +7,26 @@ class CheckBox: UIButton {
     
     // Bool property
     var isChecked: Bool = false {
-        didSet{
-            if isChecked == true {
-                self.setImage(checkedImage, for: UIControl.State.normal)
+        didSet {
+            if isChecked {
+                self.setImage(checkedImage, for: .normal)
             } else {
-                self.setImage(uncheckedImage, for: UIControl.State.normal)
+                self.setImage(uncheckedImage, for: .normal)
             }
         }
     }
     
     override func awakeFromNib() {
-        self.addTarget(self, action:#selector(buttonClicked(sender:)), for: UIControl.Event.touchUpInside)
+        super.awakeFromNib()
+        self.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
         self.isChecked = false
     }
     
     @objc func buttonClicked(sender: UIButton) {
-        
+        isChecked = !isChecked
     }
     
-    func setChecked(_ check : Bool){
+    func setChecked(_ check: Bool) {
         isChecked = check
     }
-    
 }

@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		379E1A272C06C33A00AFD3FC /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A262C06C33A00AFD3FC /* CheckBox.swift */; };
+		379E1A2F2C0A164500AFD3FC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */; };
+		379E1A312C0A164500AFD3FC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A302C0A164500AFD3FC /* SwiftUI.framework */; };
+		379E1A342C0A164500AFD3FC /* NotTODOWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A332C0A164500AFD3FC /* NotTODOWidgetBundle.swift */; };
+		379E1A362C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A352C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift */; };
+		379E1A382C0A164500AFD3FC /* NotTODOWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A372C0A164500AFD3FC /* NotTODOWidget.swift */; };
+		379E1A3A2C0A164500AFD3FC /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A392C0A164500AFD3FC /* AppIntent.swift */; };
+		379E1A3C2C0A164900AFD3FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 379E1A3B2C0A164900AFD3FC /* Assets.xcassets */; };
+		379E1A402C0A164900AFD3FC /* NotTODOWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		37FB827E2C03415E00E6ED0D /* NotTODOTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */; };
 		37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */; };
 		37FB82852C04DEF000E6ED0D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 37FB82842C04DEF000E6ED0D /* RealmSwift */; };
@@ -22,7 +30,28 @@
 		37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16D2C0083F60051B214 /* NotTODO.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		379E1A3E2C0A164900AFD3FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37FBD14A2C00298F0051B214 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 379E1A2B2C0A164500AFD3FC;
+			remoteInfo = NotTODOWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		379E1A442C0A164900AFD3FC /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				379E1A402C0A164900AFD3FC /* NotTODOWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37FB82872C04F01400E6ED0D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -38,6 +67,15 @@
 
 /* Begin PBXFileReference section */
 		379E1A262C06C33A00AFD3FC /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotTODOWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		379E1A302C0A164500AFD3FC /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		379E1A332C0A164500AFD3FC /* NotTODOWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOWidgetBundle.swift; sourceTree = "<group>"; };
+		379E1A352C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		379E1A372C0A164500AFD3FC /* NotTODOWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOWidget.swift; sourceTree = "<group>"; };
+		379E1A392C0A164500AFD3FC /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
+		379E1A3B2C0A164900AFD3FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		379E1A3D2C0A164900AFD3FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOTableViewCell.swift; sourceTree = "<group>"; };
 		37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotTODOTableViewCell.xib; sourceTree = "<group>"; };
 		37FBD1522C00298F0051B214 /* NotTODO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotTODO.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +91,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		379E1A292C0A164500AFD3FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				379E1A312C0A164500AFD3FC /* SwiftUI.framework in Frameworks */,
+				379E1A2F2C0A164500AFD3FC /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37FBD14F2C00298F0051B214 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -64,10 +111,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		379E1A2D2C0A164500AFD3FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */,
+				379E1A302C0A164500AFD3FC /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		379E1A322C0A164500AFD3FC /* NotTODOWidget */ = {
+			isa = PBXGroup;
+			children = (
+				379E1A332C0A164500AFD3FC /* NotTODOWidgetBundle.swift */,
+				379E1A352C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift */,
+				379E1A372C0A164500AFD3FC /* NotTODOWidget.swift */,
+				379E1A392C0A164500AFD3FC /* AppIntent.swift */,
+				379E1A3B2C0A164900AFD3FC /* Assets.xcassets */,
+				379E1A3D2C0A164900AFD3FC /* Info.plist */,
+			);
+			path = NotTODOWidget;
+			sourceTree = "<group>";
+		};
 		37FBD1492C00298F0051B214 = {
 			isa = PBXGroup;
 			children = (
 				37FBD1542C00298F0051B214 /* NotTODO */,
+				379E1A322C0A164500AFD3FC /* NotTODOWidget */,
+				379E1A2D2C0A164500AFD3FC /* Frameworks */,
 				37FBD1532C00298F0051B214 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				37FBD1522C00298F0051B214 /* NotTODO.app */,
+				379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +174,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		379E1A2B2C0A164500AFD3FC /* NotTODOWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 379E1A412C0A164900AFD3FC /* Build configuration list for PBXNativeTarget "NotTODOWidgetExtension" */;
+			buildPhases = (
+				379E1A282C0A164500AFD3FC /* Sources */,
+				379E1A292C0A164500AFD3FC /* Frameworks */,
+				379E1A2A2C0A164500AFD3FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotTODOWidgetExtension;
+			productName = NotTODOWidgetExtension;
+			productReference = 379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		37FBD1512C00298F0051B214 /* NotTODO */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37FBD1662C0029930051B214 /* Build configuration list for PBXNativeTarget "NotTODO" */;
@@ -110,10 +199,12 @@
 				37FBD14F2C00298F0051B214 /* Frameworks */,
 				37FBD1502C00298F0051B214 /* Resources */,
 				37FB82872C04F01400E6ED0D /* Embed Frameworks */,
+				379E1A442C0A164900AFD3FC /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				379E1A3F2C0A164900AFD3FC /* PBXTargetDependency */,
 			);
 			name = NotTODO;
 			packageProductDependencies = (
@@ -133,6 +224,9 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
+					379E1A2B2C0A164500AFD3FC = {
+						CreatedOnToolsVersion = 15.4;
+					};
 					37FBD1512C00298F0051B214 = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -155,11 +249,20 @@
 			projectRoot = "";
 			targets = (
 				37FBD1512C00298F0051B214 /* NotTODO */,
+				379E1A2B2C0A164500AFD3FC /* NotTODOWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		379E1A2A2C0A164500AFD3FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				379E1A3C2C0A164900AFD3FC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37FBD1502C00298F0051B214 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,6 +277,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		379E1A282C0A164500AFD3FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				379E1A382C0A164500AFD3FC /* NotTODOWidget.swift in Sources */,
+				379E1A3A2C0A164500AFD3FC /* AppIntent.swift in Sources */,
+				379E1A362C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift in Sources */,
+				379E1A342C0A164500AFD3FC /* NotTODOWidgetBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37FBD14E2C00298F0051B214 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -189,6 +303,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		379E1A3F2C0A164900AFD3FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 379E1A2B2C0A164500AFD3FC /* NotTODOWidgetExtension */;
+			targetProxy = 379E1A3E2C0A164900AFD3FC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		37FBD15B2C00298F0051B214 /* Main.storyboard */ = {
@@ -210,6 +332,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		379E1A422C0A164900AFD3FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotTODOWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotTODOWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Usui.Crayon.NotTODO.NotTODOWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		379E1A432C0A164900AFD3FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotTODOWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotTODOWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.Usui.Crayon.NotTODO.NotTODOWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		37FBD1642C0029930051B214 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -336,6 +512,7 @@
 		37FBD1672C0029930051B214 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -366,6 +543,7 @@
 		37FBD1682C0029930051B214 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +574,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		379E1A412C0A164900AFD3FC /* Build configuration list for PBXNativeTarget "NotTODOWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				379E1A422C0A164900AFD3FC /* Debug */,
+				379E1A432C0A164900AFD3FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		37FBD14D2C00298F0051B214 /* Build configuration list for PBXProject "NotTODO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
