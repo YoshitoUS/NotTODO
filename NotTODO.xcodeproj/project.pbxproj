@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371254F12C0B1EB100AC06D4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 371254F02C0B1EB100AC06D4 /* RealmSwift */; };
+		371254F22C0B1EB100AC06D4 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 371254F02C0B1EB100AC06D4 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		371254F52C0B23B400AC06D4 /* NotTODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16D2C0083F60051B214 /* NotTODO.swift */; };
 		379E1A272C06C33A00AFD3FC /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A262C06C33A00AFD3FC /* CheckBox.swift */; };
 		379E1A2F2C0A164500AFD3FC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */; };
 		379E1A312C0A164500AFD3FC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A302C0A164500AFD3FC /* SwiftUI.framework */; };
@@ -41,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		371254EE2C0B1EAD00AC06D4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				371254F22C0B1EB100AC06D4 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		379E1A442C0A164900AFD3FC /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				371254F12C0B1EB100AC06D4 /* RealmSwift in Frameworks */,
 				379E1A312C0A164500AFD3FC /* SwiftUI.framework in Frameworks */,
 				379E1A2F2C0A164500AFD3FC /* WidgetKit.framework in Frameworks */,
 			);
@@ -136,6 +151,7 @@
 		37FBD1492C00298F0051B214 = {
 			isa = PBXGroup;
 			children = (
+				37FBD16D2C0083F60051B214 /* NotTODO.swift */,
 				37FBD1542C00298F0051B214 /* NotTODO */,
 				379E1A322C0A164500AFD3FC /* NotTODOWidget */,
 				379E1A2D2C0A164500AFD3FC /* Frameworks */,
@@ -163,7 +179,6 @@
 				37FBD1602C0029930051B214 /* LaunchScreen.storyboard */,
 				37FBD1632C0029930051B214 /* Info.plist */,
 				37FBD16B2C00833C0051B214 /* AddNotTODOController.swift */,
-				37FBD16D2C0083F60051B214 /* NotTODO.swift */,
 				37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */,
 				37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */,
 				379E1A262C06C33A00AFD3FC /* CheckBox.swift */,
@@ -181,12 +196,16 @@
 				379E1A282C0A164500AFD3FC /* Sources */,
 				379E1A292C0A164500AFD3FC /* Frameworks */,
 				379E1A2A2C0A164500AFD3FC /* Resources */,
+				371254EE2C0B1EAD00AC06D4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = NotTODOWidgetExtension;
+			packageProductDependencies = (
+				371254F02C0B1EB100AC06D4 /* RealmSwift */,
+			);
 			productName = NotTODOWidgetExtension;
 			productReference = 379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -282,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				379E1A382C0A164500AFD3FC /* NotTODOWidget.swift in Sources */,
+				371254F52C0B23B400AC06D4 /* NotTODO.swift in Sources */,
 				379E1A3A2C0A164500AFD3FC /* AppIntent.swift in Sources */,
 				379E1A362C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift in Sources */,
 				379E1A342C0A164500AFD3FC /* NotTODOWidgetBundle.swift in Sources */,
@@ -340,6 +360,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODOWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotTODOWidget;
@@ -350,6 +371,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = app.Usui.Crayon.NotTODO.NotTODOWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -367,6 +389,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODOWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotTODOWidget;
@@ -377,6 +400,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = app.Usui.Crayon.NotTODO.NotTODOWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -438,6 +462,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
@@ -497,12 +522,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				"OTHER_LDFLAGS[arch=*]" = "-Objc";
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -520,6 +546,7 @@
 				DEVELOPMENT_TEAM = L3CL7A9YM2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODO/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報取得のため";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -551,6 +578,7 @@
 				DEVELOPMENT_TEAM = L3CL7A9YM2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODO/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報取得のため";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -615,6 +643,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		371254F02C0B1EB100AC06D4 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37FB82812C04DEF000E6ED0D /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		37FB82842C04DEF000E6ED0D /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 37FB82812C04DEF000E6ED0D /* XCRemoteSwiftPackageReference "realm-swift" */;

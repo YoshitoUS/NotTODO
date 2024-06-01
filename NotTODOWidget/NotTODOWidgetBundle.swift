@@ -5,6 +5,6 @@ import SwiftUI
 struct NotTODOWidgetBundle: WidgetBundle {
     var body: some Widget {
         NotTODOWidget()
-        NotTODOWidgetLiveActivity()
+        //NotTODOWidgetLiveActivity()
     }
 }

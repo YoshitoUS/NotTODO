@@ -1,22 +1,22 @@
-//
-//  NotTODOTableViewCell.swift
-//  NotTODO
-
 import UIKit
+import RealmSwift
 
 class NotTODOTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var checkBox: CheckBox!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var notTODO: NotTODO? {
+        didSet {
+            guard let notTODO = notTODO else { return }
+            titleLabel.text = notTODO.title
+            checkBox.setChecked(notTODO.isChecked)
+            checkBox.onCheckChanged = { [weak self] isChecked in
+                guard let self = self else { return }
+                let realm = try! Realm()
+                try! realm.write {
+                    notTODO.isChecked = isChecked
+                }
+            }
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

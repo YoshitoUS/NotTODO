@@ -16,6 +16,8 @@ class CheckBox: UIButton {
         }
     }
     
+    var onCheckChanged: ((Bool) -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchUpInside)
@@ -24,6 +26,7 @@ class CheckBox: UIButton {
     
     @objc func buttonClicked(sender: UIButton) {
         isChecked = !isChecked
+        onCheckChanged?(isChecked)
     }
     
     func setChecked(_ check: Bool) {

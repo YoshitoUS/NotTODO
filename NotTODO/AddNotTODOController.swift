@@ -7,27 +7,51 @@ class AddNotTODOController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var onSave: (() -> Void)?
+    var notTODO: NotTODO? // 編集するNotTODOのオブジェクト
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // notTODOのデータを使ってビューを更新
+        if let notTODO = notTODO {
+            titleTextField.text = notTODO.title
+            datePicker.date = notTODO.date
+        }
+    }
     
     @IBAction func saveNotTODO(_ sender: Any) {
         let title = titleTextField.text ?? ""
         let date = datePicker.date
-        let NotTODO = NotTODO(title: title, date: date)
         let realm = try! Realm()
+        
         try! realm.write {
-            realm.add(NotTODO)
+            if let notTODO = notTODO {
+                // 既存のnotTODOを更新
+                notTODO.title = title
+                notTODO.date = date
+            } else {
+                // 新しいnotTODOを作成
+                let newNotTODO = NotTODO()
+                newNotTODO.title = title
+                newNotTODO.date = date
+                realm.add(newNotTODO)
+                notTODO = newNotTODO
+            }
         }
+        
         onSave?()
         dismiss(animated: true, completion: nil)
         
+        // 通知の設定
         let content = UNMutableNotificationContent()
         content.title = "NotTODO"
-        content.body = NotTODO.title
+        content.body = title
         content.sound = UNNotificationSound.default
         let calendar = Calendar.current
-        let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: NotTODO.date)
+        let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         
-        let identifier = "MyNotification"
+        let identifier = "MyNotification_\(title)"
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         let center = UNUserNotificationCenter.current()
         center.add(request) { (error) in
@@ -42,8 +66,5 @@ class AddNotTODOController: UIViewController {
                 print("---------------/")
             }
         }
-        
     }
 }
-
-
