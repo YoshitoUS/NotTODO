@@ -6,6 +6,8 @@ class NotTODO: Object, Identifiable {
     @objc dynamic var title: String = ""
     @objc dynamic var date: Date = Date()
     @objc dynamic var isChecked: Bool = false
+    @objc dynamic var latitude: Double = 0.0
+    @objc dynamic var longitude: Double = 0.0
     
     override static func primaryKey() -> String? {
         return "id"
