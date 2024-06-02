@@ -19,3 +19,23 @@ class NotTODO: Object, Identifiable {
         self.date = date
     }
 }
+
+extension NotTODO {
+    private static var realm: Realm {
+        var config = Realm.Configuration()
+        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.NotTODO.group")!
+        config.fileURL = url.appendingPathComponent("db.realm")
+        let realm = try! Realm(configuration: config)
+        return realm
+    }
+    
+    static func all() -> Results<NotTODO> {
+        realm.objects(self)
+    }
+    
+    static func create(with notTODO: NotTODO) {
+        try! realm.write {
+            realm.create(NotTODO.self, value: notTODO, update: .all)
+        }
+    }
+}

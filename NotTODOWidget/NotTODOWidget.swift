@@ -8,7 +8,8 @@ struct Provider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date(), notTODOs: loadNotTODOs())
+        let notTODOs = Array(NotTODO.all())
+        let entry = SimpleEntry(date: Date(), notTODOs: notTODOs)
         completion(entry)
     }
 
@@ -17,25 +18,16 @@ struct Provider: TimelineProvider {
 
         // 現在の日付から始まるタイムラインを生成
         let currentDate = Date()
+        let notTODOs = Array(NotTODO.all())
+        
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, notTODOs: loadNotTODOs())
+            let entry = SimpleEntry(date: entryDate, notTODOs: notTODOs)
             entries.append(entry)
         }
 
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
-    }
-
-    private func loadNotTODOs() -> [NotTODO] {
-        do {
-            let realm = try Realm()
-            let results = realm.objects(NotTODO.self)
-            return Array(results)
-        } catch {
-            print("Failed to load Realm: \(error)")
-            return []
-        }
     }
 }
 
@@ -44,7 +36,8 @@ struct SimpleEntry: TimelineEntry {
     let notTODOs: [NotTODO]
 }
 
-struct NotTODOWidgetEntryView : View {
+
+struct NotTODOWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
@@ -52,7 +45,7 @@ struct NotTODOWidgetEntryView : View {
             Text("NotTODO List")
                 .font(.headline)
 
-            ForEach(entry.notTODOs.prefix(5), id: \.self) { notTODO in
+            ForEach(entry.notTODOs.prefix(5), id: \.id) { notTODO in
                 HStack {
                     Image(systemName: notTODO.isChecked ? "checkmark.circle.fill" : "circle")
                     Text(notTODO.title)
@@ -80,5 +73,8 @@ struct NotTODOWidget: Widget {
 #Preview(as: .systemSmall) {
     NotTODOWidget()
 } timeline: {
-    SimpleEntry(date: .now, notTODOs: [NotTODO(value: ["title": "Sample Task 1", "isChecked": false]), NotTODO(value: ["title": "Sample Task 2", "isChecked": true])])
+    SimpleEntry(date: .now, notTODOs: [
+        NotTODO(title: "Sample Task 1", date: Date()),
+        NotTODO(title: "Sample Task 2", date: Date())
+    ])
 }
