@@ -2,8 +2,8 @@ import UIKit
 
 class CheckBox: UIButton {
     // Images
-    let checkedImage = UIImage(named: "checked")! as UIImage
-    let uncheckedImage = UIImage(named: "unchecked")! as UIImage
+    let checkedImage =  UIImage(systemName: "checkmark.circle.fill")?.withTintColor(UIColor(red: 115/255, green: 139/255, blue: 147/255, alpha: 1))
+    let uncheckedImage =  UIImage(systemName: "circle.fill")?.withTintColor(UIColor(red: 115/255, green: 139/255, blue: 147/255, alpha: 1))
     
     // Bool property
     var isChecked: Bool = false {
@@ -31,5 +31,17 @@ class CheckBox: UIButton {
     
     func setChecked(_ check: Bool) {
         isChecked = check
+    }
+}
+
+extension UIImage {
+    func withTintColor(_ color: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        color.set()
+        let drawRect = CGRect(origin: .zero, size: size)
+        withRenderingMode(.alwaysTemplate).draw(in: drawRect)
+        let tintedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return tintedImage ?? self
     }
 }

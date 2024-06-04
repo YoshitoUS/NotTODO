@@ -5,13 +5,20 @@ import CoreLocation
 class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var trashImage: UIImageView!
     
     var myManager: CLLocationManager!
     
     var notTODOs: Results<NotTODO>!
-    let realm = try! Realm()
+    let realm = NotTODO.realm
     
     var isEditingMode: Bool = false // 編集モードをトグルするためのプロパティ
+    
+    // ボタンの画像をプロパティとして定義
+    var isDeleteButtonToggled = false
+    let deleteImage = UIImage(systemName: "trash.square.fill")
+    let deleteImageToggled = UIImage(systemName: "trash.slash.square")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +40,26 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // 初回起動時に許可ステータスを確認
         checkLocationAuthorization()
+        
+        plusButton.layer.cornerRadius = plusButton.frame.height / 2
+        plusButton.layer.shadowOpacity = 0.7
+        plusButton.layer.shadowRadius = 3
+        plusButton.layer.shadowColor = UIColor.black.cgColor
+        plusButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        plusButton.clipsToBounds = true
+        plusButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 198/255, alpha: 1)
+        
+        trashImage.image = deleteImage
     }
+    
     
     @IBAction func toggleEditingMode(_ sender: Any) {
         isEditingMode = !isEditingMode
         tableView.setEditing(isEditingMode, animated: true)
+        
+        isDeleteButtonToggled.toggle()
+        let image = isDeleteButtonToggled ? deleteImageToggled : deleteImage
+        trashImage.image = image
     }
     
     // UITableViewDataSourceメソッドの実装
@@ -47,7 +69,8 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotTODOCell", for: indexPath) as! NotTODOTableViewCell
-        cell.notTODO = notTODOs[indexPath.row] // NotTODO モデルをセルにセット
+        let notTODO = notTODOs[indexPath.row]
+        cell.titleLabel.text = notTODO.title
         return cell
     }
     
@@ -72,7 +95,6 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let notTODOToDelete = notTODOs[indexPath.row]
-            let realm = try! Realm()
             try! realm.write {
                 realm.delete(notTODOToDelete)
             }

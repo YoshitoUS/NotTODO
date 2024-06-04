@@ -78,3 +78,4 @@ struct NotTODOWidget: Widget {
         NotTODO(title: "Sample Task 2", date: Date())
     ])
 }
+

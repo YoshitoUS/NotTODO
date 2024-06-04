@@ -21,21 +21,39 @@ class NotTODO: Object, Identifiable {
 }
 
 extension NotTODO {
-    private static var realm: Realm {
+     static var realm: Realm {
         var config = Realm.Configuration()
-        let url = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.NotTODO.group")!
-        config.fileURL = url.appendingPathComponent("db.realm")
-        let realm = try! Realm(configuration: config)
-        return realm
+        if let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.NotTODO.group") {
+            config.fileURL = appGroupURL.appendingPathComponent("db.realm")
+        }
+        config.schemaVersion = 1 // 必要に応じてスキーマバージョンを更新
+        config.migrationBlock = { migration, oldSchemaVersion in
+            if oldSchemaVersion < 1 {
+                // ここでマイグレーション処理を追加
+            }
+        }
+        return try! Realm(configuration: config)
     }
     
     static func all() -> Results<NotTODO> {
-        realm.objects(self)
+        return realm.objects(NotTODO.self)
     }
     
     static func create(with notTODO: NotTODO) {
         try! realm.write {
-            realm.create(NotTODO.self, value: notTODO, update: .all)
+            realm.add(notTODO, update: .all)
+        }
+    }
+    
+    static func update(_ notTODO: NotTODO) {
+        try! realm.write {
+            realm.add(notTODO, update: .modified)
+        }
+    }
+    
+    static func delete(_ notTODO: NotTODO) {
+        try! realm.write {
+            realm.delete(notTODO)
         }
     }
 }

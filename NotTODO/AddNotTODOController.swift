@@ -32,7 +32,7 @@ class AddNotTODOController: UIViewController, CLLocationManagerDelegate {
     @IBAction func saveNotTODO(_ sender: Any) {
         let title = titleTextField.text ?? ""
         let date = datePicker.date
-        let realm = try! Realm()
+        let realm = NotTODO.realm
         
         try! realm.write {
             if let notTODO = notTODO {
