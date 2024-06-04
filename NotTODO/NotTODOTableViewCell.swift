@@ -19,4 +19,18 @@ class NotTODOTableViewCell: UITableViewCell {
             }
         }
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupCellAppearance()
+    }
+    
+    private func setupCellAppearance() {
+        // セルの背景色を設定
+        self.backgroundColor = UIColor.white
+        
+        // セルの角を丸く設定
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+    }
 }

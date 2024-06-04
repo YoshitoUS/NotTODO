@@ -4,6 +4,7 @@ import CoreLocation
 
 class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var topView:UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var trashImage: UIImageView!
@@ -25,6 +26,7 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "NotTODOTableViewCell", bundle: nil), forCellReuseIdentifier: "NotTODOCell")
+        tableView.backgroundColor = UIColor.clear
         
         // Realmからデータを取得
         notTODOs = realm.objects(NotTODO.self)
@@ -41,15 +43,40 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         // 初回起動時に許可ステータスを確認
         checkLocationAuthorization()
         
+        
+        trashImage.image = deleteImage
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // カスタムカラーを定義
+        let customColor1 = UIColor(red: 115/255, green: 139/255, blue: 147/255, alpha: 1)
+        topView.backgroundColor = customColor1
+        
+        // ナビゲーションバーの設定
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.isTranslucent = false
+            navigationBar.barTintColor = customColor1
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        } else {
+            print("Navigation bar is not available")
+        }
+        
         plusButton.layer.cornerRadius = plusButton.frame.height / 2
         plusButton.layer.shadowOpacity = 0.7
         plusButton.layer.shadowRadius = 3
         plusButton.layer.shadowColor = UIColor.black.cgColor
         plusButton.layer.shadowOffset = CGSize(width: 5, height: 5)
-        plusButton.clipsToBounds = true
+        //plusButton.clipsToBounds = true
         plusButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 198/255, alpha: 1)
+        view.addSubview(plusButton)
         
-        trashImage.image = deleteImage
+        // 色の確認
+        print("Navigation bar color: \(String(describing: navigationController?.navigationBar.barTintColor))")
+        print("Image view background color: \(String(describing: topView.backgroundColor))")
+        print("Plus button background color: \(String(describing: plusButton.backgroundColor))")
     }
     
     
@@ -91,7 +118,7 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
     }
-   
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let notTODOToDelete = notTODOs[indexPath.row]

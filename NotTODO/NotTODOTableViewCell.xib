@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4u-xM-MFb" customClass="CheckBox" customModule="NotTODO" customModuleProvider="target">
-                        <rect key="frame" x="42" y="15" width="24" height="14"/>
+                        <rect key="frame" x="16" y="0.0" width="50" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain"/>
@@ -36,7 +36,7 @@
                 <outlet property="checkBox" destination="s4u-xM-MFb" id="ZWI-hV-Gql"/>
                 <outlet property="titleLabel" destination="iFw-g6-VAq" id="ebF-34-tUa"/>
             </connections>
-            <point key="canvasLocation" x="62.595419847328245" y="-1.4084507042253522"/>
+            <point key="canvasLocation" x="62.595419847328245" y="-6.3380281690140849"/>
         </tableViewCell>
     </objects>
 </document>
