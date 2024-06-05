@@ -6,5 +6,6 @@ struct NotTODOWidgetBundle: WidgetBundle {
     var body: some Widget {
         NotTODOWidget()
         //NotTODOWidgetLiveActivity()
+        NotTODOLockScreenWidget()
     }
 }

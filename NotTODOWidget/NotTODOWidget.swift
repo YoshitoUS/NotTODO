@@ -57,6 +57,21 @@ struct NotTODOWidgetEntryView: View {
     }
 }
 
+struct NotTODOLockScreenWidget: Widget {
+    let kind: String = "NotTODOLockScreenWidget"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+            NotTODOWidgetEntryView(entry: entry)
+                .widgetURL(URL(string: "yourappscheme://"))
+                .containerBackground(.fill.tertiary, for: .widget)
+        }
+        .configurationDisplayName("NotTODO Lock Screen Widget")
+        .description("Displays your NotTODO list on the lock screen.")
+        .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryInline])
+    }
+}
+
 struct NotTODOWidget: Widget {
     let kind: String = "NotTODOWidget"
 

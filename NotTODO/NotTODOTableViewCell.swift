@@ -9,13 +9,15 @@ class NotTODOTableViewCell: UITableViewCell {
         didSet {
             guard let notTODO = notTODO else { return }
             titleLabel.text = notTODO.title
+            checkBox.notTODO = notTODO
             checkBox.setChecked(notTODO.isChecked)
             checkBox.onCheckChanged = { [weak self] isChecked in
                 guard let self = self else { return }
-                let realm = try! Realm()
+                let realm = NotTODO.realm
                 try! realm.write {
                     notTODO.isChecked = isChecked
                 }
+                NotificationCenter.default.post(name: NSNotification.Name("CheckChanged"), object: nil)
             }
         }
     }

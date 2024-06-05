@@ -89,7 +89,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t15-wL-ZZb">
-                                <rect key="frame" x="228" y="149" width="110" height="73"/>
+                                <rect key="frame" x="159" y="149" width="179" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.65549879010000001" blue="0.62425958540000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -126,6 +126,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="deleteButton" destination="9Zj-rg-pyl" id="Nmw-dn-E0d"/>
+                        <outlet property="percentageLabel" destination="t15-wL-ZZb" id="niq-hL-vPu"/>
                         <outlet property="plusButton" destination="ldv-mp-18U" id="O2I-fN-N0B"/>
                         <outlet property="tableView" destination="RPx-YN-vS0" id="5Jv-is-Y7E"/>
                         <outlet property="topView" destination="BOI-Qd-wVh" id="D53-ge-yt3"/>

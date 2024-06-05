@@ -16,7 +16,6 @@
 		379E1A342C0A164500AFD3FC /* NotTODOWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A332C0A164500AFD3FC /* NotTODOWidgetBundle.swift */; };
 		379E1A362C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A352C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift */; };
 		379E1A382C0A164500AFD3FC /* NotTODOWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A372C0A164500AFD3FC /* NotTODOWidget.swift */; };
-		379E1A3A2C0A164500AFD3FC /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A392C0A164500AFD3FC /* AppIntent.swift */; };
 		379E1A3C2C0A164900AFD3FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 379E1A3B2C0A164900AFD3FC /* Assets.xcassets */; };
 		379E1A402C0A164900AFD3FC /* NotTODOWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		37FB827E2C03415E00E6ED0D /* NotTODOTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */; };
@@ -86,7 +85,6 @@
 		379E1A332C0A164500AFD3FC /* NotTODOWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOWidgetBundle.swift; sourceTree = "<group>"; };
 		379E1A352C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		379E1A372C0A164500AFD3FC /* NotTODOWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOWidget.swift; sourceTree = "<group>"; };
-		379E1A392C0A164500AFD3FC /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		379E1A3B2C0A164900AFD3FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		379E1A3D2C0A164900AFD3FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotTODOTableViewCell.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 				379E1A332C0A164500AFD3FC /* NotTODOWidgetBundle.swift */,
 				379E1A352C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift */,
 				379E1A372C0A164500AFD3FC /* NotTODOWidget.swift */,
-				379E1A392C0A164500AFD3FC /* AppIntent.swift */,
 				379E1A3B2C0A164900AFD3FC /* Assets.xcassets */,
 				379E1A3D2C0A164900AFD3FC /* Info.plist */,
 			);
@@ -302,7 +299,6 @@
 			files = (
 				379E1A382C0A164500AFD3FC /* NotTODOWidget.swift in Sources */,
 				371254F52C0B23B400AC06D4 /* NotTODO.swift in Sources */,
-				379E1A3A2C0A164500AFD3FC /* AppIntent.swift in Sources */,
 				379E1A362C0A164500AFD3FC /* NotTODOWidgetLiveActivity.swift in Sources */,
 				379E1A342C0A164500AFD3FC /* NotTODOWidgetBundle.swift in Sources */,
 			);

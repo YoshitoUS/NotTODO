@@ -1,20 +1,29 @@
 import RealmSwift
 import UIKit
 import CoreLocation
+import WidgetKit
 
 class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var topView:UIImageView!
+    @IBOutlet weak var topView: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var trashImage: UIImageView!
+    @IBOutlet weak var percentageLabel: UILabel!
     
     var myManager: CLLocationManager!
     
     var notTODOs: Results<NotTODO>!
     let realm = NotTODO.realm
     
-    var isEditingMode: Bool = false // 編集モードをトグルするためのプロパティ
+    var isEditingMode: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: "isEditingMode")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isEditingMode")
+        }
+    }
     
     // ボタンの画像をプロパティとして定義
     var isDeleteButtonToggled = false
@@ -43,9 +52,18 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         // 初回起動時に許可ステータスを確認
         checkLocationAuthorization()
         
+        // 通知の登録
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePercentage), name: NSNotification.Name("CheckChanged"), object: nil)
+        updatePercentage()
         
         trashImage.image = deleteImage
         
+        // 編集モードを復元
+        tableView.setEditing(isEditingMode, animated: false)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("CheckChanged"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,9 +97,15 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         print("Plus button background color: \(String(describing: plusButton.backgroundColor))")
     }
     
+    @objc func updatePercentage() {
+        let total = notTODOs.count
+        let checked = notTODOs.filter("isChecked == true").count
+        let percentage = total > 0 ? (Double(checked) / Double(total)) * 100 : 0
+        percentageLabel.text = String(format: "Completion: %.1f%%", percentage)
+    }
     
     @IBAction func toggleEditingMode(_ sender: Any) {
-        isEditingMode = !isEditingMode
+        isEditingMode.toggle()
         tableView.setEditing(isEditingMode, animated: true)
         
         isDeleteButtonToggled.toggle()
@@ -97,7 +121,7 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotTODOCell", for: indexPath) as! NotTODOTableViewCell
         let notTODO = notTODOs[indexPath.row]
-        cell.titleLabel.text = notTODO.title
+        cell.notTODO = notTODO // セルにモデルをセット
         return cell
     }
     
@@ -115,6 +139,10 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             destinationVC.onSave = { [weak self] in
                 self?.tableView.reloadData()
+                self?.updatePercentage()
+                // ウィジェットのタイムラインをリロード
+                WidgetCenter.shared.reloadTimelines(ofKind: "NotTODOWidget")
+                WidgetCenter.shared.reloadTimelines(ofKind: "NotTODOLockScreenWidget")
             }
         }
     }
@@ -126,6 +154,10 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
                 realm.delete(notTODOToDelete)
             }
             tableView.deleteRows(at: [indexPath], with: .automatic)
+            updatePercentage()
+            // ウィジェットのタイムラインをリロード
+            WidgetCenter.shared.reloadTimelines(ofKind: "NotTODOWidget")
+            WidgetCenter.shared.reloadTimelines(ofKind: "NotTODOLockScreenWidget")
         }
     }
     

@@ -1,17 +1,29 @@
 import UIKit
+import RealmSwift
 
 class CheckBox: UIButton {
     // Images
-    let checkedImage =  UIImage(systemName: "checkmark.circle.fill")?.withTintColor(UIColor(red: 115/255, green: 139/255, blue: 147/255, alpha: 1))
-    let uncheckedImage =  UIImage(systemName: "circle.fill")?.withTintColor(UIColor(red: 115/255, green: 139/255, blue: 147/255, alpha: 1))
+    let checkedImage = UIImage(systemName: "checkmark.circle.fill")?.withTintColor(UIColor(red: 115/255, green: 139/255, blue: 147/255, alpha: 1))
+    let uncheckedImage = UIImage(systemName: "circle.fill")?.withTintColor(UIColor(red: 115/255, green: 139/255, blue: 147/255, alpha: 1))
+    
+    var notTODO: NotTODO? {
+        didSet {
+            guard let notTODO = notTODO else { return }
+            isChecked = notTODO.isChecked
+            updateImage()
+        }
+    }
     
     // Bool property
     var isChecked: Bool = false {
         didSet {
-            if isChecked {
-                self.setImage(checkedImage, for: .normal)
-            } else {
-                self.setImage(uncheckedImage, for: .normal)
+            updateImage()
+            if let notTODO = notTODO {
+                let realm = NotTODO.realm
+                try! realm.write {
+                    notTODO.isChecked = isChecked
+                }
+                NotificationCenter.default.post(name: NSNotification.Name("CheckChanged"), object: nil)
             }
         }
     }
@@ -29,6 +41,14 @@ class CheckBox: UIButton {
         onCheckChanged?(isChecked)
     }
     
+    private func updateImage() {
+        if isChecked {
+            self.setImage(checkedImage, for: .normal)
+        } else {
+            self.setImage(uncheckedImage, for: .normal)
+        }
+    }
+    
     func setChecked(_ check: Bool) {
         isChecked = check
     }
@@ -44,6 +64,4 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return tintedImage ?? self
     }
-    
-    
 }
