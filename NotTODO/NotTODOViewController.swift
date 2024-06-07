@@ -10,6 +10,8 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var trashImage: UIImageView!
     @IBOutlet weak var percentageLabel: UILabel!
+    @IBOutlet weak var sengen: UIButton!
+    @IBOutlet weak var sengenView: UIImageView!
     
     
     
@@ -62,6 +64,11 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
             navigationBar.isTranslucent = true
             navigationBar.backgroundColor = .clear
         }
+        
+        sengen.layer.cornerRadius = 8
+        sengenView.layer.cornerRadius = 8
+        sengenView.image = UIImage(systemName: "person.wave.2.fill")
+        
     }
     
     deinit {
@@ -104,18 +111,18 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         let checked = notTODOs.filter("isChecked == true").count
         let percentage = total > 0 ? (Double(checked) / Double(total)) * 100 : 0
         let roundedPercentage = Int(round(percentage))
-
+        
         let percentageString = "\(roundedPercentage)%"
         let attributedString = NSMutableAttributedString(string: " \(percentageString)")
-
+        
         let percentageRange = (attributedString.string as NSString).range(of: "\(roundedPercentage)")
         let percentSignRange = (attributedString.string as NSString).range(of: "%")
-
+        
         attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 40), range: percentageRange) // 数字のフォントサイズ
         attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 20), range: percentSignRange) // %のフォントサイズ
-
+        
         percentageLabel.attributedText = attributedString
-
+        
     }
     
     @IBAction func toggleEditingMode(_ sender: Any) {
@@ -175,4 +182,38 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    @IBAction func captureAndShareTableView(_ sender: Any) {
+        if let tableViewImage = tableView.toImage() {
+            showShareSheet(image: tableViewImage)
+        }
+    }
+    
+    private func showShareSheet(image: UIImage) {
+        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
+    }
+}
+
+extension UITableView {
+    func toImage() -> UIImage? {
+        let originalOffset = self.contentOffset
+        let contentHeight = self.contentSize.height
+        let frameHeight = self.frame.size.height
+        
+        // Set the table view's height to content height
+        self.contentSize.height = contentHeight
+        self.frame.size.height = contentHeight
+        
+        // Render the image
+        let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
+        let image = renderer.image { context in
+            self.layer.render(in: context.cgContext)
+        }
+        
+        // Restore the original offset and frame height
+        self.contentOffset = originalOffset
+        self.frame.size.height = frameHeight
+        
+        return image
+    }
 }
