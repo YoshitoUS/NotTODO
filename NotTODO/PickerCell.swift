@@ -24,11 +24,20 @@ class PickerCell: UITableViewCell {
         let isOn = sender.isOn
         datePicker.isHidden = !isOn
         bell.image = isOn ? UIImage(systemName: "bell.fill") : UIImage(systemName: "bell")
+        if isOn {
+            UIView.animate(withDuration: 0.3) {
+                self.datePicker.alpha = 1.0
+            }
+        } else {
+            UIView.animate(withDuration: 0.3) {
+                self.datePicker.alpha = 0.0
+            }
+        }
     }
 
     private func prepare() {
         datePicker.isHidden = true
-        datePicker.alpha = 0
+        datePicker.alpha = 0.0
         notificationSwitch.addTarget(self, action: #selector(notificationSwitchChanged(sender:)), for: .valueChanged)
         datePicker.addTarget(self, action: #selector(datePickerValueDidChange(sender:)), for: .valueChanged)
         
@@ -37,11 +46,26 @@ class PickerCell: UITableViewCell {
         contentView.addSubview(bell)
         contentView.addSubview(datePicker)
         
-        // Set up frames
-        label.frame = CGRect(x: 15, y: 15, width: 200, height: 20)
-        notificationSwitch.frame = CGRect(x: contentView.frame.width - 60, y: 10, width: 50, height: 30)
-        bell.frame = CGRect(x: contentView.frame.width - 120, y: 10, width: 30, height: 30)
-        datePicker.frame = CGRect(x: 15, y: 50, width: contentView.frame.width - 30, height: 150)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        notificationSwitch.translatesAutoresizingMaskIntoConstraints = false
+        bell.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
+            
+            notificationSwitch.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            notificationSwitch.centerYAnchor.constraint(equalTo: label.centerYAnchor),
+            
+            bell.trailingAnchor.constraint(equalTo: notificationSwitch.leadingAnchor, constant: -10),
+            bell.centerYAnchor.constraint(equalTo: label.centerYAnchor),
+            
+            datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            datePicker.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 15),
+            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
+        ])
     }
 
     static let formatter: DateFormatter = {

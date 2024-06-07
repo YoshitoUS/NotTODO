@@ -17,6 +17,7 @@ class AddNotTODOController: UIViewController, CLLocationManagerDelegate, UITable
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.clear
         tableView.register(PickerCell.self, forCellReuseIdentifier: "PickerCell")
         
         locationManager.delegate = self
@@ -30,7 +31,7 @@ class AddNotTODOController: UIViewController, CLLocationManagerDelegate, UITable
 
     @IBAction func saveNotTODO(_ sender: Any) {
         let title = titleTextField.text ?? ""
-        let realm = NotTODO.realm
+        let realm = try! Realm()
         
         try! realm.write {
             if let notTODO = notTODO {

@@ -31,19 +31,13 @@
                         <rect key="frame" x="115" y="7" width="49" height="31"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </switch>
-                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="crf-oy-uFy">
-                        <rect key="frame" x="0.0" y="52" width="343" height="82"/>
+                    <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="S4e-88-PmJ">
+                        <rect key="frame" x="107" y="70" width="128" height="58"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     </datePicker>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <connections>
-                <outlet property="bell" destination="f5Q-2y-a7y" id="S7w-o5-jNP"/>
-                <outlet property="datePicker" destination="crf-oy-uFy" id="HQX-ho-nLo"/>
-                <outlet property="label" destination="nnS-f5-vi4" id="KpV-4J-igC"/>
-                <outlet property="notificationSwitch" destination="kab-ea-1Cv" id="nvs-3j-Lk0"/>
-            </connections>
             <point key="canvasLocation" x="-2.2900763358778624" y="-51.408450704225352"/>
         </tableViewCell>
     </objects>
