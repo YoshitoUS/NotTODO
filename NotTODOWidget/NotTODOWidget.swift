@@ -18,7 +18,7 @@ struct Provider: TimelineProvider {
 
         // 現在の日付から始まるタイムラインを生成
         let currentDate = Date()
-        let notTODOs = Array(NotTODO.all())
+        let notTODOs = Array(NotTODO.all().prefix(4)) // リストの個数を4つに制限
         
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
@@ -36,24 +36,36 @@ struct SimpleEntry: TimelineEntry {
     let notTODOs: [NotTODO]
 }
 
-
 struct NotTODOWidgetEntryView: View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("NotTODO List")
-                .font(.headline)
-
-            ForEach(entry.notTODOs.prefix(5), id: \.id) { notTODO in
-                HStack {
-                    Image(systemName: notTODO.isChecked ? "checkmark.circle.fill" : "circle")
-                    Text(notTODO.title)
-                        .font(.subheadline)
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(red: 115/255, green: 139/255, blue: 147/255))
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                .padding([.leading, .trailing], -30) // 左右の余白を削除
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("NotTODO List")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding(.top, 10)
+                
+                ForEach(entry.notTODOs.prefix(4), id: \.id) { notTODO in // リストの個数を4つに制限
+                    HStack {
+                        Image(systemName: notTODO.isChecked ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(.white)
+                        Text(notTODO.title)
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.vertical, 2)
                 }
+                Spacer()
             }
+            .padding()
         }
-        .padding()
     }
 }
 
@@ -64,7 +76,6 @@ struct NotTODOLockScreenWidget: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             NotTODOWidgetEntryView(entry: entry)
                 .widgetURL(URL(string: "yourappscheme://"))
-                .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("NotTODO Lock Screen Widget")
         .description("Displays your NotTODO list on the lock screen.")
@@ -78,10 +89,10 @@ struct NotTODOWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             NotTODOWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("NotTODO Widget")
         .description("This is a widget to display your NotTODO list.")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
@@ -93,4 +104,3 @@ struct NotTODOWidget: Widget {
         NotTODO(title: "Sample Task 2", date: Date())
     ])
 }
-

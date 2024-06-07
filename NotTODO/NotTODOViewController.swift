@@ -11,7 +11,8 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var trashImage: UIImageView!
     @IBOutlet weak var percentageLabel: UILabel!
     
-    var myManager: CLLocationManager!
+    
+    
     
     var notTODOs: Results<NotTODO>!
     let realm = NotTODO.realm
@@ -46,12 +47,6 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("NotTODO: \(notTODO.title), Date: \(notTODO.date)")
         }
         
-        myManager = CLLocationManager()
-        myManager.delegate = self
-        
-        // 初回起動時に許可ステータスを確認
-        checkLocationAuthorization()
-        
         // 通知の登録
         NotificationCenter.default.addObserver(self, selector: #selector(updatePercentage), name: NSNotification.Name("CheckChanged"), object: nil)
         updatePercentage()
@@ -60,6 +55,13 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // 編集モードを復元
         tableView.setEditing(isEditingMode, animated: false)
+        
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+            navigationBar.isTranslucent = true
+            navigationBar.backgroundColor = .clear
+        }
     }
     
     deinit {
@@ -101,7 +103,19 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         let total = notTODOs.count
         let checked = notTODOs.filter("isChecked == true").count
         let percentage = total > 0 ? (Double(checked) / Double(total)) * 100 : 0
-        percentageLabel.text = String(format: "Completion: %.1f%%", percentage)
+        let roundedPercentage = Int(round(percentage))
+
+        let percentageString = "\(roundedPercentage)%"
+        let attributedString = NSMutableAttributedString(string: " \(percentageString)")
+
+        let percentageRange = (attributedString.string as NSString).range(of: "\(roundedPercentage)")
+        let percentSignRange = (attributedString.string as NSString).range(of: "%")
+
+        attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 40), range: percentageRange) // 数字のフォントサイズ
+        attributedString.addAttribute(.font, value: UIFont.systemFont(ofSize: 20), range: percentSignRange) // %のフォントサイズ
+
+        percentageLabel.attributedText = attributedString
+
     }
     
     @IBAction func toggleEditingMode(_ sender: Any) {
@@ -161,33 +175,4 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
-    func checkLocationAuthorization() {
-        switch myManager.authorizationStatus {
-        case .notDetermined:
-            myManager.requestWhenInUseAuthorization()
-        case .restricted:
-            alertMessage(message: "位置情報サービスの利用が制限されている利用できません。「設定」⇒「一般」⇒「機能制限」")
-        case .denied:
-            alertMessage(message: "位置情報の利用が許可されていないため利用できません。「設定」⇒「プライバシー」⇒「位置情報サービス」⇒「アプリ名」")
-        case .authorizedWhenInUse, .authorizedAlways:
-            if CLLocationManager.locationServicesEnabled() {
-                myManager.startUpdatingLocation()
-            } else {
-                alertMessage(message: "位置情報サービスがONになっていないため利用できません。「設定」⇒「プライバシー」⇒「位置情報サービス」")
-            }
-        @unknown default:
-            fatalError("Unknown authorization status")
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
-    }
-    
-    func alertMessage(message: String) {
-        let alertController = UIAlertController(title: "注意", message: message, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertController.addAction(defaultAction)
-        present(alertController, animated: true, completion: nil)
-    }
 }

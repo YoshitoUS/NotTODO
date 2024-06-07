@@ -1,5 +1,6 @@
 import UIKit
 import RealmSwift
+import WidgetKit
 
 class CheckBox: UIButton {
     // Images
@@ -24,6 +25,9 @@ class CheckBox: UIButton {
                     notTODO.isChecked = isChecked
                 }
                 NotificationCenter.default.post(name: NSNotification.Name("CheckChanged"), object: nil)
+                // ウィジェットのタイムラインをリロード
+                WidgetCenter.shared.reloadTimelines(ofKind: "NotTODOWidget")
+                WidgetCenter.shared.reloadTimelines(ofKind: "NotTODOLockScreenWidget")
             }
         }
     }

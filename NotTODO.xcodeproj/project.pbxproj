@@ -10,6 +10,8 @@
 		371254F12C0B1EB100AC06D4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 371254F02C0B1EB100AC06D4 /* RealmSwift */; };
 		371254F22C0B1EB100AC06D4 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 371254F02C0B1EB100AC06D4 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		371254F52C0B23B400AC06D4 /* NotTODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16D2C0083F60051B214 /* NotTODO.swift */; };
+		3757314F2C129CBC004FD95E /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3757314E2C129CBC004FD95E /* PickerCell.xib */; };
+		375731502C129CBC004FD95E /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757314D2C129CBC004FD95E /* PickerCell.swift */; };
 		379E1A272C06C33A00AFD3FC /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A262C06C33A00AFD3FC /* CheckBox.swift */; };
 		379E1A2F2C0A164500AFD3FC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */; };
 		379E1A312C0A164500AFD3FC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A302C0A164500AFD3FC /* SwiftUI.framework */; };
@@ -78,6 +80,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3757314D2C129CBC004FD95E /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
+		3757314E2C129CBC004FD95E /* PickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
 		379E1A262C06C33A00AFD3FC /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotTODOWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -180,6 +184,8 @@
 				37FB827C2C03415D00E6ED0D /* NotTODOTableViewCell.swift */,
 				37FB827D2C03415D00E6ED0D /* NotTODOTableViewCell.xib */,
 				379E1A262C06C33A00AFD3FC /* CheckBox.swift */,
+				3757314D2C129CBC004FD95E /* PickerCell.swift */,
+				3757314E2C129CBC004FD95E /* PickerCell.xib */,
 			);
 			path = NotTODO;
 			sourceTree = "<group>";
@@ -285,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37FBD1622C0029930051B214 /* Base in Resources */,
+				3757314F2C129CBC004FD95E /* PickerCell.xib in Resources */,
 				37FBD15D2C00298F0051B214 /* Base in Resources */,
 				37FB827E2C03415E00E6ED0D /* NotTODOTableViewCell.xib in Resources */,
 			);
@@ -309,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37FBD16C2C00833C0051B214 /* AddNotTODOController.swift in Sources */,
+				375731502C129CBC004FD95E /* PickerCell.swift in Sources */,
 				37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */,
 				37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */,
 				379E1A272C06C33A00AFD3FC /* CheckBox.swift in Sources */,
