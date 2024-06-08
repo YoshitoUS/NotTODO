@@ -14,8 +14,6 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var sengenView: UIImageView!
     
     
-    
-    
     var notTODOs: Results<NotTODO>!
     let realm = NotTODO.realm
     
@@ -57,14 +55,7 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // 編集モードを復元
         tableView.setEditing(isEditingMode, animated: false)
-        
-        if let navigationBar = navigationController?.navigationBar {
-            navigationBar.setBackgroundImage(UIImage(), for: .default)
-            navigationBar.shadowImage = UIImage()
-            navigationBar.isTranslucent = true
-            navigationBar.backgroundColor = .clear
-        }
-        
+
         sengen.layer.cornerRadius = 8
         sengenView.layer.cornerRadius = 8
         sengenView.image = UIImage(systemName: "person.wave.2.fill")
@@ -183,15 +174,37 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func captureAndShareTableView(_ sender: Any) {
-        if let tableViewImage = tableView.toImage() {
-            showShareSheet(image: tableViewImage)
+            if let tableViewImage = tableView.toImage() {
+                let titledImage = addTitleToImage(image: tableViewImage, title: "NotTODO List")
+                showShareSheet(image: titledImage)
+            }
         }
-    }
-    
-    private func showShareSheet(image: UIImage) {
-        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        present(activityVC, animated: true, completion: nil)
-    }
+
+        private func showShareSheet(image: UIImage) {
+            let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            present(activityVC, animated: true, completion: nil)
+        }
+
+        private func addTitleToImage(image: UIImage, title: String) -> UIImage {
+            let renderer = UIGraphicsImageRenderer(size: CGSize(width: image.size.width, height: image.size.height + 50))
+            return renderer.image { context in
+                // Draw the original image
+                image.draw(at: CGPoint(x: 0, y: 50))
+
+                // Define attributes for the title
+                let attributes: [NSAttributedString.Key: Any] = [
+                    .font: UIFont.boldSystemFont(ofSize: 24),
+                    .foregroundColor: UIColor.black
+                ]
+
+                // Calculate the position to draw the title
+                let titleSize = title.size(withAttributes: attributes)
+                let titleRect = CGRect(x: (image.size.width - titleSize.width) / 2, y: 10, width: titleSize.width, height: titleSize.height)
+
+                // Draw the title
+                title.draw(in: titleRect, withAttributes: attributes)
+            }
+        }
 }
 
 extension UITableView {
@@ -199,21 +212,21 @@ extension UITableView {
         let originalOffset = self.contentOffset
         let contentHeight = self.contentSize.height
         let frameHeight = self.frame.size.height
-        
+
         // Set the table view's height to content height
         self.contentSize.height = contentHeight
         self.frame.size.height = contentHeight
-        
+
         // Render the image
         let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
         let image = renderer.image { context in
             self.layer.render(in: context.cgContext)
         }
-        
+
         // Restore the original offset and frame height
         self.contentOffset = originalOffset
         self.frame.size.height = frameHeight
-        
+
         return image
     }
 }

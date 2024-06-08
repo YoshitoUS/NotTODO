@@ -4,7 +4,9 @@ class PickerCell: UITableViewCell {
     let datePicker = UIDatePicker()
     let label = UILabel()
     let notificationSwitch = UISwitch()
-    let bell = UIImageView()
+    let bell = UIImageView(image: UIImage(systemName: "bell")) // 初期画像を設定
+    
+    var onNotificationSwitchChanged: ((Bool, Date) -> Void)?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -17,20 +19,23 @@ class PickerCell: UITableViewCell {
     }
 
     @objc func datePickerValueDidChange(sender: UIDatePicker) {
-        label.text = PickerCell.formatter.string(from: sender.date)
+        // 以前の機能を廃止
     }
 
     @objc func notificationSwitchChanged(sender: UISwitch) {
         let isOn = sender.isOn
         datePicker.isHidden = !isOn
         bell.image = isOn ? UIImage(systemName: "bell.fill") : UIImage(systemName: "bell")
+        
+        // 通知の設定/削除
+        onNotificationSwitchChanged?(isOn, datePicker.date)
     }
 
     private func prepare() {
         datePicker.datePickerMode = .dateAndTime
         datePicker.isHidden = true
         datePicker.alpha = 1
-        datePicker.isUserInteractionEnabled = true  // 確認ポイント
+        datePicker.isUserInteractionEnabled = true
         
         notificationSwitch.addTarget(self, action: #selector(notificationSwitchChanged(sender:)), for: .valueChanged)
         datePicker.addTarget(self, action: #selector(datePickerValueDidChange(sender:)), for: .valueChanged)
@@ -52,26 +57,19 @@ class PickerCell: UITableViewCell {
             bell.widthAnchor.constraint(equalToConstant: 30),
             bell.heightAnchor.constraint(equalToConstant: 30),
             
-            notificationSwitch.leadingAnchor.constraint(equalTo: bell.trailingAnchor, constant: 10),
-            notificationSwitch.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            
-            label.leadingAnchor.constraint(equalTo: notificationSwitch.trailingAnchor, constant: 10),
+            label.leadingAnchor.constraint(equalTo: bell.trailingAnchor, constant: 10),
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            notificationSwitch.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 10),
+            notificationSwitch.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             datePicker.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 10),
             datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
         ])
         
-        label.textColor = .black  // カラー設定
-        datePicker.tintColor = .black  // カラー設定
+        label.text = "通知"
+        label.textColor = .black
+        datePicker.tintColor = .black
     }
-
-    static let formatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.calendar = Calendar(identifier: .gregorian)
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .short
-        return dateFormatter
-    }()
 }
