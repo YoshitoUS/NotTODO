@@ -29,6 +29,11 @@ class PickerCell: UITableViewCell {
         
         // 通知の設定/削除
         onNotificationSwitchChanged?(isOn, datePicker.date)
+
+        // contentViewの高さを変更する
+        UIView.animate(withDuration: 0.3) {
+            self.contentView.layoutIfNeeded()
+        }
     }
 
     private func prepare() {
@@ -63,9 +68,10 @@ class PickerCell: UITableViewCell {
             notificationSwitch.leadingAnchor.constraint(equalTo: label.trailingAnchor, constant: 10),
             notificationSwitch.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            datePicker.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 10),
+            datePicker.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
             datePicker.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15)
+            datePicker.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            datePicker.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
         
         label.text = "通知"

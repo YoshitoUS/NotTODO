@@ -69,18 +69,72 @@ struct NotTODOWidgetEntryView: View {
     }
 }
 
+struct NotTODOLockScreenEntryView: View {
+    var entry: Provider.Entry
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(red: 115/255, green: 139/255, blue: 147/255))
+                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                .padding([.leading, .trailing], -30) // 左右の余白を削除
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("NotTODO List")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding(.top, 10)
+                
+                ForEach(entry.notTODOs.prefix(3), id: \.id) { notTODO in // リストの個数を3つに制限
+                    HStack {
+                        Image(systemName: notTODO.isChecked ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(.white)
+                        Text(notTODO.title)
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.vertical, 2)
+                }
+                Spacer()
+            }
+            .padding()
+        }
+    }
+}
+
+
 struct NotTODOLockScreenWidget: Widget {
     let kind: String = "NotTODOLockScreenWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            NotTODOWidgetEntryView(entry: entry)
+        NotTODOLockScreenEntryView(entry: entry)
                 .widgetURL(URL(string: "yourappscheme://"))
         }
         .configurationDisplayName("NotTODO Lock Screen Widget")
         .description("Displays your NotTODO list on the lock screen.")
         .supportedFamilies([.accessoryCircular, .accessoryRectangular, .accessoryInline])
     }
+    private var supportedFamilies: [WidgetFamily] {
+            if #available(iOSApplicationExtension 16.0, *) {
+                return [
+                    .systemSmall,
+                    .systemMedium,
+                    .systemLarge,
+                    .systemExtraLarge,
+                    .accessoryInline,
+                    .accessoryCircular,
+                    .accessoryRectangular
+                    
+                ]
+            } else {
+                return [
+                    .systemSmall,
+                    .systemMedium,
+                    .systemLarge
+                ]
+            }
+        }
 }
 
 struct NotTODOWidget: Widget {
@@ -94,6 +148,27 @@ struct NotTODOWidget: Widget {
         .description("This is a widget to display your NotTODO list.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
+    
+    private var supportedFamilies: [WidgetFamily] {
+            if #available(iOSApplicationExtension 16.0, *) {
+                return [
+                    .systemSmall,
+                    .systemMedium,
+                    .systemLarge,
+                    .systemExtraLarge,
+                    .accessoryInline,
+                    .accessoryCircular,
+                    .accessoryRectangular
+                    
+                ]
+            } else {
+                return [
+                    .systemSmall,
+                    .systemMedium,
+                    .systemLarge
+                ]
+            }
+        }
 }
 
 #Preview(as: .systemSmall) {
