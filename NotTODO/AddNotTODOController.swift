@@ -1,17 +1,14 @@
 import UIKit
 import RealmSwift
 import UserNotifications
-import CoreLocation
 
-class AddNotTODOController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleTextField: UITextField!
 
     var onSave: (() -> Void)?
     var notTODO: NotTODO?
 
-    let locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
     let realm = try! Realm() // Realmインスタンスを追加
 
     override func viewDidLoad() {
@@ -19,10 +16,6 @@ class AddNotTODOController: UIViewController, CLLocationManagerDelegate, UITable
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(PickerCell.self, forCellReuseIdentifier: "PickerCell")
-        
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
 
         if let notTODO = notTODO {
             titleTextField.text = notTODO.title
@@ -63,9 +56,6 @@ class AddNotTODOController: UIViewController, CLLocationManagerDelegate, UITable
         dismiss(animated: true, completion: nil)
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        currentLocation = locations.last
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

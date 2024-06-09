@@ -43,7 +43,6 @@ struct NotTODOWidgetEntryView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(red: 115/255, green: 139/255, blue: 147/255))
-                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
                 .padding([.leading, .trailing], -30) // 左右の余白を削除
             
             VStack(alignment: .leading, spacing: 8) {
@@ -52,7 +51,7 @@ struct NotTODOWidgetEntryView: View {
                     .foregroundColor(.white)
                     .padding(.top, 10)
                 
-                ForEach(entry.notTODOs.prefix(4), id: \.id) { notTODO in // リストの個数を4つに制限
+                ForEach(entry.notTODOs.prefix(4), id: \.id) { notTODO in
                     HStack {
                         Image(systemName: notTODO.isChecked ? "checkmark.circle.fill" : "circle")
                             .foregroundColor(.white)
@@ -62,12 +61,20 @@ struct NotTODOWidgetEntryView: View {
                     }
                     .padding(.vertical, 2)
                 }
+
+                // 追加する改行の数を計算
+                let additionalLines = max(0, 4 - entry.notTODOs.count)
+                ForEach(0..<additionalLines, id: \.self) { _ in
+                    Text("") // 空のTextビューを使用して改行を追加
+                }
+                
                 Spacer()
             }
             .padding()
         }
     }
 }
+
 
 struct NotTODOLockScreenEntryView: View {
     var entry: Provider.Entry
