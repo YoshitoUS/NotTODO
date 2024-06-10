@@ -83,21 +83,21 @@ struct NotTODOLockScreenEntryView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(red: 115/255, green: 139/255, blue: 147/255))
-                .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
-                .padding([.leading, .trailing], -30) // 左右の余白を削除
+             // 左右の余白を削除
             
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 0.1) {
                 Text("NotTODO List")
-                    .font(.headline)
+                    .font(.caption2)
                     .foregroundColor(.white)
-                    .padding(.top, 10)
+                    .padding(.top, 12)
                 
                 ForEach(entry.notTODOs.prefix(3), id: \.id) { notTODO in // リストの個数を3つに制限
                     HStack {
                         Image(systemName: notTODO.isChecked ? "checkmark.circle.fill" : "circle")
                             .foregroundColor(.white)
+                            .frame(width: 1, height: 1)
                         Text(notTODO.title)
-                            .font(.subheadline)
+                            .font(.caption2)
                             .foregroundColor(.white)
                     }
                     .padding(.vertical, 2)

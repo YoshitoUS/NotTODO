@@ -89,12 +89,8 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         plusButton.layer.shadowOffset = CGSize(width: 5, height: 5)
         //plusButton.clipsToBounds = true
         plusButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 198/255, alpha: 1)
-        view.addSubview(plusButton)
+        //view.addSubview(plusButton)
         
-        // 色の確認
-        print("Navigation bar color: \(String(describing: navigationController?.navigationBar.barTintColor))")
-        print("Image view background color: \(String(describing: topView.backgroundColor))")
-        print("Plus button background color: \(String(describing: plusButton.backgroundColor))")
     }
     
     @objc func updatePercentage() {

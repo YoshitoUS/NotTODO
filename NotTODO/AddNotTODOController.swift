@@ -15,6 +15,7 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+      
         tableView.register(PickerCell.self, forCellReuseIdentifier: "PickerCell")
 
         if let notTODO = notTODO {
@@ -82,8 +83,8 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
     private func scheduleTimeNotification(for notTODO: NotTODO, at date: Date) {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
-        content.title = "NotTODO"
-        content.body = notTODO.title
+        content.title = notTODO.title
+        //content.body = notTODO.title
         content.sound = UNNotificationSound.default
         
         let calendar = Calendar.current
