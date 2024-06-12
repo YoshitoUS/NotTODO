@@ -12,7 +12,7 @@ class NotTODOTableViewCell: UITableViewCell {
             checkBox.notTODO = notTODO
             checkBox.setChecked(notTODO.isChecked)
             checkBox.onCheckChanged = { [weak self] isChecked in
-                guard let self = self else { return }
+                guard self != nil else { return }
                 let realm = NotTODO.realm
                 try! realm.write {
                     notTODO.isChecked = isChecked

@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  NotTODO
-//
-//  Created by Yoshito Usui on 2024/05/24.
-//
-
 import UIKit
 import RealmSwift
 import UserNotifications
@@ -12,7 +5,7 @@ import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let center = UNUserNotificationCenter.current()
@@ -23,32 +16,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("許可されませんでした！")
             }
         }
-        
-        let config = Realm.Configuration(
-            schemaVersion: 1,
-            migrationBlock: nil,
-            deleteRealmIfMigrationNeeded: true)
-        //Realm.Configuration.defaultConfiguration = config
-        Realm.Configuration.defaultConfiguration = NotTODO.realm.configuration
+
+        var config = Realm.Configuration()
+        if let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.NotTODO.group") {
+            config.fileURL = appGroupURL.appendingPathComponent("db.realm")
+        }
+        config.schemaVersion = 3 // スキーマバージョンを更新
+        config.migrationBlock = { migration, oldSchemaVersion in
+            if oldSchemaVersion < 3 {
+                // 新しいプロパティ 'repeatUntil' を追加
+                migration.enumerateObjects(ofType: NotTODO.className()) { oldObject, newObject in
+                    newObject!["repeatUntil"] = Date()
+                }
+            }
+        }
+
+        Realm.Configuration.defaultConfiguration = config
+
+        // Realmのインスタンスを取得してマイグレーションを適用
+        let _ = try! Realm()
+
         return true
     }
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .list, .sound])
     }
+
     // MARK: UISceneSession Lifecycle
-    
+
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-    
+
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
 }
-

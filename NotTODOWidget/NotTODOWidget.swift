@@ -178,11 +178,12 @@ struct NotTODOWidget: Widget {
         }
 }
 
-#Preview(as: .systemSmall) {
-    NotTODOWidget()
-} timeline: {
-    SimpleEntry(date: .now, notTODOs: [
-        NotTODO(title: "Sample Task 1", date: Date()),
-        NotTODO(title: "Sample Task 2", date: Date())
-    ])
+struct NotTODOWidget_Previews: PreviewProvider {
+    static var previews: some View {
+        NotTODOWidgetEntryView(entry: SimpleEntry(date: Date(), notTODOs: [
+            NotTODO(title: "Sample Task 1", date: Date(), repeatUntil: Date()),
+            NotTODO(title: "Sample Task 2", date: Date(), repeatUntil: Date())
+        ]))
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
 }
