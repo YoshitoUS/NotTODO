@@ -5,12 +5,12 @@ import UserNotifications
 class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleTextField: UITextField!
-
+    
     var onSave: (() -> Void)?
     var notTODO: NotTODO?
-
+    
     let realm = try! Realm() // Realmインスタンスを追加
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -18,12 +18,21 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.register(PickerCell.self, forCellReuseIdentifier: "PickerCell")
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
-
+        
         if let notTODO = notTODO {
             titleTextField.text = notTODO.title
         }
+        
+        // タップジェスチャーを追加してキーボードを閉じる
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
-
+    
+    // キーボードを閉じるメソッド
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     @IBAction func saveNotTODO(_ sender: Any) {
         let title = titleTextField.text ?? ""
         
@@ -73,11 +82,11 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         onSave?()
         dismiss(animated: true, completion: nil)
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath) as! PickerCell
         if let notTODO = notTODO {
@@ -112,7 +121,7 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         return cell
     }
-
+    
     private func scheduleTimeNotification(for notTODO: NotTODO, at date: Date, until endDate: Date) {
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
@@ -145,7 +154,7 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
             currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
         }
     }
-
+    
     private func removeTimeNotification(for notTODO: NotTODO) {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
