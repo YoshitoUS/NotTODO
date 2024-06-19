@@ -89,7 +89,6 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         plusButton.layer.shadowOffset = CGSize(width: 5, height: 5)
         //plusButton.clipsToBounds = true
         plusButton.backgroundColor = UIColor(red: 82/255, green: 190/255, blue: 198/255, alpha: 1)
-        //view.addSubview(plusButton)
         
     }
     
