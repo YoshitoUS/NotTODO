@@ -71,26 +71,34 @@ class PickerCell: UITableViewCell {
             datePicker1.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             datePicker1.topAnchor.constraint(equalTo: bellImageView.bottomAnchor, constant: 16),
             datePicker1.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            datePicker1.widthAnchor.constraint(greaterThanOrEqualToConstant: 280),
 
             // Date picker 2 constraints
             datePicker2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             datePicker2.topAnchor.constraint(equalTo: datePicker1.bottomAnchor, constant: 16),
             datePicker2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            datePicker2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            datePicker2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            datePicker2.widthAnchor.constraint(greaterThanOrEqualToConstant: 280)
         ])
     }
+
 
     @objc private func switchChanged() {
         let isOn = notificationSwitch.isOn
         datePicker1.isHidden = !isOn
         datePicker2.isHidden = !isOn
         onNotificationSwitchChanged?(isOn, datePicker1.date, datePicker2.date)
+        
+        // デバッグログの追加
+        print("Date Picker 1 is \(datePicker1.isHidden ? "hidden" : "visible"), user interaction enabled: \(datePicker1.isUserInteractionEnabled)")
+        print("Date Picker 2 is \(datePicker2.isHidden ? "hidden" : "visible"), user interaction enabled: \(datePicker2.isUserInteractionEnabled)")
 
         // レイアウトを更新してdatePickerの表示を切り替える
         UIView.animate(withDuration: 0.3) {
             self.layoutIfNeeded()
         }
     }
+
 
     @objc private func datePicker1Changed() {
         print("Date selected: \(datePicker1.date)")
