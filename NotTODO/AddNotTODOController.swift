@@ -13,19 +13,9 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 通知の権限をリクエスト
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if let error = error {
-                print("通知の権限リクエストエラー: \(error)")
-            } else {
-                print("通知の権限が \(granted ? "許可されました" : "拒否されました")")
-            }
-        }
-        
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(PickerCell.self, forCellReuseIdentifier: "PickerCell")
+        tableView.register(UINib(nibName: "PickerCell", bundle: nil), forCellReuseIdentifier: "PickerCell")
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
 
@@ -37,7 +27,6 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
     }
-
 
     // キーボードを閉じるメソッド
     @objc func dismissKeyboard() {
@@ -68,10 +57,8 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
 
                 if cell.notificationSwitch.isOn {
-                    print("通知をスケジュールします")
                     scheduleTimeNotification(for: notTODO, at: cell.datePicker1.date, until: cell.datePicker2.date)
                 } else {
-                    print("通知を削除します")
                     removeTimeNotification(for: notTODO)
                 }
             }
@@ -80,7 +67,6 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         onSave?()
         dismiss(animated: true, completion: nil)
     }
-
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -114,12 +100,12 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         let content = UNMutableNotificationContent()
         content.title = notTODO.title
         content.sound = UNNotificationSound.default
-        
+
         var currentDate = Date()
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
-        
+
         while currentDate <= endDate {
             var dateComponents = DateComponents()
             dateComponents.hour = hour
@@ -127,10 +113,10 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
             dateComponents.year = calendar.component(.year, from: currentDate)
             dateComponents.month = calendar.component(.month, from: currentDate)
             dateComponents.day = calendar.component(.day, from: currentDate)
-            
+
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            
+
             center.add(request) { error in
                 if let error = error {
                     print("通知の追加に失敗しました: \(error)")
@@ -138,12 +124,11 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
                     print("通知がスケジュールされました: \(dateComponents)")
                 }
             }
-            
+
             // 次の日に設定
             currentDate = calendar.date(byAdding: .day, value: 1, to: currentDate)!
         }
     }
-
 
     private func removeTimeNotification(for notTODO: NotTODO) {
         let center = UNUserNotificationCenter.current()
