@@ -2,9 +2,15 @@ import UIKit
 import RealmSwift
 import UserNotifications
 
-class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var tableView: UITableView!
+class AddNotTODOController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var bellImageView: UIImageView!
+    @IBOutlet weak var datePicker1: UIDatePicker!
+    @IBOutlet weak var datePicker2: UIDatePicker!
+    @IBOutlet weak var notificationSwitch: UISwitch!
+    @IBOutlet weak var label: UILabel!
+    
+    var onNotificationSwitchChanged: ((Bool, Date, Date) -> Void)?
 
     var onSave: (() -> Void)?
     var notTODO: NotTODO?
@@ -13,11 +19,8 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UINib(nibName: "PickerCell", bundle: nil), forCellReuseIdentifier: "PickerCell")
-        tableView.estimatedRowHeight = 100
-        tableView.rowHeight = UITableView.automaticDimension
+
+        setupViews()
 
         if let notTODO = notTODO {
             titleTextField.text = notTODO.title
@@ -48,51 +51,21 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         }
 
         if let notTODO = notTODO {
-            let indexPath = IndexPath(row: 0, section: 0)
-            if let cell = tableView.cellForRow(at: indexPath) as? PickerCell {
-                try! realm.write {
-                    notTODO.date = cell.datePicker1.date
-                    notTODO.repeatUntil = cell.datePicker2.date
-                    notTODO.hasNotification = cell.notificationSwitch.isOn
-                }
+            try! realm.write {
+                notTODO.date = datePicker1.date
+                notTODO.repeatUntil = datePicker2.date
+                notTODO.hasNotification = notificationSwitch.isOn
+            }
 
-                if cell.notificationSwitch.isOn {
-                    scheduleTimeNotification(for: notTODO, at: cell.datePicker1.date, until: cell.datePicker2.date)
-                } else {
-                    removeTimeNotification(for: notTODO)
-                }
+            if notificationSwitch.isOn {
+                scheduleTimeNotification(for: notTODO, at: datePicker1.date, until: datePicker2.date)
+            } else {
+                removeTimeNotification(for: notTODO)
             }
         }
 
         onSave?()
         dismiss(animated: true, completion: nil)
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PickerCell", for: indexPath) as! PickerCell
-        if let notTODO = notTODO {
-            cell.datePicker1.date = notTODO.date
-            cell.datePicker2.date = notTODO.repeatUntil
-            cell.notificationSwitch.isOn = notTODO.hasNotification
-            cell.label.text = "通知"
-            cell.datePicker1.isHidden = !notTODO.hasNotification
-            cell.datePicker2.isHidden = !notTODO.hasNotification
-
-            // 通知のオン/オフを切り替えるクロージャを設定
-            cell.onNotificationSwitchChanged = { [weak self] isOn, date1, date2 in
-                guard let self = self else { return }
-                try! self.realm.write {
-                    notTODO.hasNotification = isOn
-                    notTODO.date = date1
-                    notTODO.repeatUntil = date2
-                }
-            }
-        }
-        return cell
     }
 
     private func scheduleTimeNotification(for notTODO: NotTODO, at date: Date, until endDate: Date) {
@@ -133,5 +106,57 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
     private func removeTimeNotification(for notTODO: NotTODO) {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
+    }
+    
+    private func setupViews() {
+        // デバッグ用コード
+        if datePicker1 == nil {
+            print("datePicker1 is nil")
+        } else {
+            print("datePicker1 is connected")
+        }
+
+        if datePicker2 == nil {
+            print("datePicker2 is nil")
+        } else {
+            print("datePicker2 is connected")
+        }
+
+        if notificationSwitch == nil {
+            print("notificationSwitch is nil")
+        } else {
+            print("notificationSwitch is connected")
+        }
+
+        // datePicker1の設定
+        datePicker1.preferredDatePickerStyle = .inline
+        datePicker1.datePickerMode = .date
+        datePicker1.isHidden = true
+        datePicker1.isUserInteractionEnabled = true
+        datePicker1.addTarget(self, action: #selector(datePicker1Changed), for: .valueChanged)
+
+        // datePicker2の設定
+        datePicker2.preferredDatePickerStyle = .wheels
+        datePicker2.datePickerMode = .time
+        datePicker2.isHidden = true
+        datePicker2.isUserInteractionEnabled = true
+
+        // notificationSwitchの設定
+        notificationSwitch.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
+    }
+
+    @objc private func switchChanged() {
+        let isOn = notificationSwitch.isOn
+        datePicker1.isHidden = !isOn
+        datePicker2.isHidden = !isOn
+        onNotificationSwitchChanged?(isOn, datePicker1.date, datePicker2.date)
+
+        // デバッグログの追加
+        print("Date Picker 1 is \(datePicker1.isHidden ? "hidden" : "visible"), user interaction enabled: \(datePicker1.isUserInteractionEnabled)")
+        print("Date Picker 2 is \(datePicker2.isHidden ? "hidden" : "visible"), user interaction enabled: \(datePicker2.isUserInteractionEnabled)")
+    }
+
+    @objc private func datePicker1Changed() {
+        print("Date selected: \(datePicker1.date)")
     }
 }
