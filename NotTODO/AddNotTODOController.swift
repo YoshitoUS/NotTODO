@@ -2,23 +2,10 @@ import RealmSwift
 import UserNotifications
 import UIKit
 
-<<<<<<< HEAD
-class AddNotTODOController: UIViewController {
-    @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var bellImageView: UIImageView!
-    @IBOutlet weak var datePicker1: UIDatePicker!
-    @IBOutlet weak var datePicker2: UIDatePicker!
-    @IBOutlet weak var notificationSwitch: UISwitch!
-    @IBOutlet weak var label: UILabel!
-    
-    var onNotificationSwitchChanged: ((Bool, Date, Date) -> Void)?
-
-=======
 class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleTextField: UITextField!
     
->>>>>>> hoge
     var onSave: (() -> Void)?
     var notTODO: NotTODO?
     
@@ -26,11 +13,6 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-<<<<<<< HEAD
-
-        setupViews()
-
-=======
         
         // 通知の権限をリクエスト
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
@@ -47,24 +29,18 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         
->>>>>>> hoge
         if let notTODO = notTODO {
             titleTextField.text = notTODO.title
         }
         
         self.titleTextField.delegate = self
     }
-<<<<<<< HEAD
-
-    // キーボードを閉じるメソッド
-=======
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
->>>>>>> hoge
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -84,18 +60,6 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         if let notTODO = notTODO {
-<<<<<<< HEAD
-            try! realm.write {
-                notTODO.date = datePicker1.date
-                notTODO.repeatUntil = datePicker2.date
-                notTODO.hasNotification = notificationSwitch.isOn
-            }
-
-            if notificationSwitch.isOn {
-                scheduleTimeNotification(for: notTODO, at: datePicker1.date, until: datePicker2.date)
-            } else {
-                removeTimeNotification(for: notTODO)
-=======
             let indexPath = IndexPath(row: 0, section: 0)
             if let cell = tableView.cellForRow(at: indexPath) as? PickerCell {
                 try! realm.write {
@@ -114,17 +78,12 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
                     print("通知を削除します")
                     removeTimeNotification(for: notTODO)
                 }
->>>>>>> hoge
             }
         }
         
         onSave?()
         dismiss(animated: true, completion: nil)
     }
-<<<<<<< HEAD
-
-    private func scheduleTimeNotification(for notTODO: NotTODO, at date: Date, until endDate: Date) {
-=======
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -154,25 +113,17 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func scheduleTimeNotification(for notTODO: NotTODO, at time: Date, until endDate: Date) {
->>>>>>> hoge
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         content.title = notTODO.title
         content.sound = UNNotificationSound.default
 
-<<<<<<< HEAD
-        var currentDate = Date()
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date)
-        let minute = calendar.component(.minute, from: date)
-=======
         var currentDate = Date() // 現在の日付を取得
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: time)
         let minute = calendar.component(.minute, from: time)
         
         print("scheduleTimeNotification")
->>>>>>> hoge
 
         while currentDate <= endDate {
             var dateComponents = DateComponents()
@@ -182,12 +133,9 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
             dateComponents.month = calendar.component(.month, from: currentDate)
             dateComponents.day = calendar.component(.day, from: currentDate)
 
-<<<<<<< HEAD
-=======
             // デバッグ情報を追加
             print("スケジュール中の通知: \(dateComponents)")
 
->>>>>>> hoge
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
@@ -209,64 +157,9 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
 
-<<<<<<< HEAD
-=======
     
->>>>>>> hoge
     private func removeTimeNotification(for notTODO: NotTODO) {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
-    }
-    
-    private func setupViews() {
-        // デバッグ用コード
-        if datePicker1 == nil {
-            print("datePicker1 is nil")
-        } else {
-            print("datePicker1 is connected")
-        }
-
-        if datePicker2 == nil {
-            print("datePicker2 is nil")
-        } else {
-            print("datePicker2 is connected")
-        }
-
-        if notificationSwitch == nil {
-            print("notificationSwitch is nil")
-        } else {
-            print("notificationSwitch is connected")
-        }
-
-        // datePicker1の設定
-        datePicker1.preferredDatePickerStyle = .inline
-        datePicker1.datePickerMode = .date
-        datePicker1.isHidden = true
-        datePicker1.isUserInteractionEnabled = true
-        datePicker1.addTarget(self, action: #selector(datePicker1Changed), for: .valueChanged)
-
-        // datePicker2の設定
-        datePicker2.preferredDatePickerStyle = .wheels
-        datePicker2.datePickerMode = .time
-        datePicker2.isHidden = true
-        datePicker2.isUserInteractionEnabled = true
-
-        // notificationSwitchの設定
-        notificationSwitch.addTarget(self, action: #selector(switchChanged), for: .valueChanged)
-    }
-
-    @objc private func switchChanged() {
-        let isOn = notificationSwitch.isOn
-        datePicker1.isHidden = !isOn
-        datePicker2.isHidden = !isOn
-        onNotificationSwitchChanged?(isOn, datePicker1.date, datePicker2.date)
-
-        // デバッグログの追加
-        print("Date Picker 1 is \(datePicker1.isHidden ? "hidden" : "visible"), user interaction enabled: \(datePicker1.isUserInteractionEnabled)")
-        print("Date Picker 2 is \(datePicker2.isHidden ? "hidden" : "visible"), user interaction enabled: \(datePicker2.isUserInteractionEnabled)")
-    }
-
-    @objc private func datePicker1Changed() {
-        print("Date selected: \(datePicker1.date)")
     }
 }
