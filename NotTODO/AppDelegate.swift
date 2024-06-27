@@ -18,9 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         var config = Realm.Configuration()
-        if let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.NotTODO.group") {
+        if let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.Usui.Crayon.NotTODO") {
             config.fileURL = appGroupURL.appendingPathComponent("db.realm")
+        } else {
+            // エラーハンドリング
+            print("Error: アプリケーショングループのURLを取得できません")
+            return false
         }
+
         config.schemaVersion = 3 // スキーマバージョンを更新
         config.migrationBlock = { migration, oldSchemaVersion in
             if oldSchemaVersion < 3 {
@@ -31,10 +36,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
 
-        Realm.Configuration.defaultConfiguration = config
+        do {
+            Realm.Configuration.defaultConfiguration = config
 
-        // Realmのインスタンスを取得してマイグレーションを適用
-        let _ = try! Realm()
+            // Realmのインスタンスを取得してマイグレーションを適用
+            let _ = try Realm()
+        } catch {
+            // エラーハンドリング
+            print("Error: Realmの設定中にエラーが発生しました - \(error.localizedDescription)")
+            return false
+        }
 
         return true
     }

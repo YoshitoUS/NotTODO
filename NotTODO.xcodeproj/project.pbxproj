@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		371254F12C0B1EB100AC06D4 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 371254F02C0B1EB100AC06D4 /* RealmSwift */; };
-		371254F22C0B1EB100AC06D4 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 371254F02C0B1EB100AC06D4 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		371254F52C0B23B400AC06D4 /* NotTODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FBD16D2C0083F60051B214 /* NotTODO.swift */; };
 		3757314F2C129CBC004FD95E /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3757314E2C129CBC004FD95E /* PickerCell.xib */; };
 		375731502C129CBC004FD95E /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757314D2C129CBC004FD95E /* PickerCell.swift */; };
@@ -53,7 +52,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				371254F22C0B1EB100AC06D4 /* RealmSwift in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,7 +370,7 @@
 				CODE_SIGN_ENTITLEMENTS = NotTODOWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				DEVELOPMENT_TEAM = NH269XV6X5;
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODOWidget/Info.plist;
@@ -402,7 +400,7 @@
 				CODE_SIGN_ENTITLEMENTS = NotTODOWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				DEVELOPMENT_TEAM = NH269XV6X5;
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODOWidget/Info.plist;
@@ -558,7 +556,7 @@
 				CODE_SIGN_ENTITLEMENTS = NotTODO/NotTODO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				DEVELOPMENT_TEAM = NH269XV6X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODO/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報取得のため";
@@ -591,7 +589,7 @@
 				CODE_SIGN_ENTITLEMENTS = NotTODO/NotTODO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = L3CL7A9YM2;
+				DEVELOPMENT_TEAM = NH269XV6X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODO/Info.plist;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "位置情報取得のため";

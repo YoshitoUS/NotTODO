@@ -13,7 +13,6 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var sengen: UIButton!
     @IBOutlet weak var sengenView: UIImageView!
     
-    
     var notTODOs: Results<NotTODO>!
     let realm = NotTODO.realm
     
@@ -55,7 +54,7 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // 編集モードを復元
         tableView.setEditing(isEditingMode, animated: false)
-
+        
         sengen.layer.cornerRadius = 8
         sengenView.layer.cornerRadius = 8
         sengenView.image = UIImage(systemName: "person.wave.2.fill")
@@ -168,60 +167,104 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    // 写真にして共有
     @IBAction func captureAndShareTableView(_ sender: Any) {
-            if let tableViewImage = tableView.toImage() {
-                let titledImage = addTitleToImage(image: tableViewImage, title: "NotTODO List")
-                showShareSheet(image: titledImage)
+        if let tableViewImage = tableView.toImage() {
+            let titledImage = addTitleToImage(image: tableViewImage, title: "NotTODO List")
+            showShareSheet(image: titledImage, sender: sender)
+        }
+    }
+    
+    private func showShareSheet(image: UIImage, sender: Any) {
+        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        if let popoverController = activityVC.popoverPresentationController {
+            if let barButtonItem = sender as? UIBarButtonItem {
+                popoverController.barButtonItem = barButtonItem
+            } else if let view = sender as? UIView {
+                popoverController.sourceView = view
+                popoverController.sourceRect = view.bounds
+            } else {
+                popoverController.sourceView = self.view
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
             }
+            popoverController.permittedArrowDirections = []
         }
-
-        private func showShareSheet(image: UIImage) {
-            let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            present(activityVC, animated: true, completion: nil)
+        
+        present(activityVC, animated: true, completion: nil)
+    }
+    
+    private func addTitleToImage(image: UIImage, title: String) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: image.size.width, height: image.size.height + 50))
+        return renderer.image { context in
+            // 元の画像を描画
+            image.draw(at: CGPoint(x: 0, y: 50))
+            
+            // タイトルの属性を定義
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: UIFont.boldSystemFont(ofSize: 24),
+                .foregroundColor: UIColor.black
+            ]
+            
+            // タイトルを描画する位置を計算
+            let titleSize = title.size(withAttributes: attributes)
+            let titleRect = CGRect(x: (image.size.width - titleSize.width) / 2, y: 10, width: titleSize.width, height: titleSize.height)
+            
+            // タイトルを描画
+            title.draw(in: titleRect, withAttributes: attributes)
         }
-
-        private func addTitleToImage(image: UIImage, title: String) -> UIImage {
-            let renderer = UIGraphicsImageRenderer(size: CGSize(width: image.size.width, height: image.size.height + 50))
-            return renderer.image { context in
-                // Draw the original image
-                image.draw(at: CGPoint(x: 0, y: 50))
-
-                // Define attributes for the title
-                let attributes: [NSAttributedString.Key: Any] = [
-                    .font: UIFont.boldSystemFont(ofSize: 24),
-                    .foregroundColor: UIColor.black
-                ]
-
-                // Calculate the position to draw the title
-                let titleSize = title.size(withAttributes: attributes)
-                let titleRect = CGRect(x: (image.size.width - titleSize.width) / 2, y: 10, width: titleSize.width, height: titleSize.height)
-
-                // Draw the title
-                title.draw(in: titleRect, withAttributes: attributes)
-            }
-        }
+    }
 }
+
 
 extension UITableView {
     func toImage() -> UIImage? {
-        let originalOffset = self.contentOffset
-        let contentHeight = self.contentSize.height
-        let frameHeight = self.frame.size.height
-
-        // Set the table view's height to content height
-        self.contentSize.height = contentHeight
-        self.frame.size.height = contentHeight
-
-        // Render the image
-        let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
+        let originalBounds = self.bounds
+        
+        let renderer = UIGraphicsImageRenderer(size: self.contentSize)
         let image = renderer.image { context in
+            let savedContentOffset = self.contentOffset
+            let savedFrame = self.frame
+            let savedBounds = self.bounds
+            
+            self.contentOffset = .zero
+            self.frame = CGRect(x: 0, y: 0, width: self.contentSize.width, height: self.contentSize.height)
+            self.bounds = CGRect(origin: .zero, size: self.contentSize)
+            
             self.layer.render(in: context.cgContext)
+            
+            self.contentOffset = savedContentOffset
+            self.frame = savedFrame
+            self.bounds = savedBounds
         }
-
-        // Restore the original offset and frame height
-        self.contentOffset = originalOffset
-        self.frame.size.height = frameHeight
-
+        
+        self.bounds = originalBounds
         return image
     }
 }
+
+/*
+ extension UITableView {
+ func toImage() -> UIImage? {
+ let originalOffset = self.contentOffset
+ let contentHeight = self.contentSize.height
+ let frameHeight = self.frame.size.height
+ 
+ // Set the table view's height to content height
+ self.contentSize.height = contentHeight
+ self.frame.size.height = contentHeight
+ 
+ // Render the image
+ let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
+ let image = renderer.image { context in
+ self.layer.render(in: context.cgContext)
+ }
+ 
+ // Restore the original offset and frame height
+ self.contentOffset = originalOffset
+ self.frame.size.height = frameHeight
+ 
+ return image
+ }
+ }
+ */

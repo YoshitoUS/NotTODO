@@ -1,5 +1,6 @@
 import Foundation
 import RealmSwift
+import UIKit
 
 class NotTODO: Object, Identifiable {
     @objc dynamic var id: ObjectId = ObjectId.generate()
@@ -9,7 +10,7 @@ class NotTODO: Object, Identifiable {
     @objc dynamic var latitude: Double = 0.0
     @objc dynamic var longitude: Double = 0.0
     @objc dynamic var hasNotification: Bool = false
-    @objc dynamic var repeatUntil: Date = Date() // 新しいプロパティ
+    @objc dynamic var repeatUntil: Date = Date()
 
     override static func primaryKey() -> String? {
         return "id"
@@ -26,10 +27,10 @@ class NotTODO: Object, Identifiable {
 extension NotTODO {
     static var realm: Realm {
         var config = Realm.Configuration()
-        if let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.NotTODO.group") {
+        if let appGroupURL = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.Usui.Crayon.NotTODO") {
             config.fileURL = appGroupURL.appendingPathComponent("db.realm")
         }
-        config.schemaVersion = 3 // スキーマバージョンを更新
+        config.schemaVersion = 3
         config.migrationBlock = { migration, oldSchemaVersion in
             if oldSchemaVersion < 3 {
                 migration.enumerateObjects(ofType: NotTODO.className()) { oldObject, newObject in

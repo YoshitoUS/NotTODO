@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.NotTODO.group</string>
+		<string>group.com.Usui.Crayon.NotTODO</string>
 	</array>
 </dict>
 </plist>
