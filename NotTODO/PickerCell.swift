@@ -33,10 +33,12 @@ class PickerCell: UITableViewCell {
         datePicker1.preferredDatePickerStyle = .inline
         datePicker1.datePickerMode = .date
         datePicker1.translatesAutoresizingMaskIntoConstraints = false
+        datePicker1.locale = Locale(identifier: "ja_JP")
+        datePicker1.calendar = Calendar(identifier: .gregorian)
+    
         datePicker1.isHidden = true // 初期状態で非表示
         contentView.addSubview(datePicker1)
 
-        datePicker2.preferredDatePickerStyle = .wheels
         datePicker2.datePickerMode = .time
         datePicker2.translatesAutoresizingMaskIntoConstraints = false
         datePicker2.isHidden = true // 初期状態で非表示
@@ -47,15 +49,18 @@ class PickerCell: UITableViewCell {
         contentView.addSubview(notificationSwitch)
 
         label.text = "通知"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(label)
 
         // 新しいラベルの設定
-        deadlineLabel.text = "期限"
+        deadlineLabel.text = "この日まで通知"
+        deadlineLabel.font = UIFont.boldSystemFont(ofSize: 20)
         deadlineLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(deadlineLabel)
 
         notificationTimeLabel.text = "通知時間"
+        notificationTimeLabel.font = UIFont.boldSystemFont(ofSize: 20)
         notificationTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(notificationTimeLabel)
         
@@ -93,12 +98,12 @@ class PickerCell: UITableViewCell {
 
             // Notification time label constraints
             notificationTimeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            notificationTimeLabel.topAnchor.constraint(equalTo: datePicker1.bottomAnchor, constant: 8),
+            notificationTimeLabel.topAnchor.constraint(equalTo: datePicker1.bottomAnchor, constant: 20),
 
             // Date picker 2 constraints
-            datePicker2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            datePicker2.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -50),
             datePicker2.topAnchor.constraint(equalTo: notificationTimeLabel.bottomAnchor, constant: 8),
-            datePicker2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            datePicker2.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -130),
             datePicker2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             datePicker2.widthAnchor.constraint(greaterThanOrEqualToConstant: 280)
         ])
