@@ -29,10 +29,12 @@ class NotTODOTableViewCell: UITableViewCell {
     
     private func setupCellAppearance() {
         // セルの背景色を設定
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor(red: 225/255, green: 237/255, blue: 246/255, alpha: 1)
         
+        /*
         // セルの角を丸く設定
         self.layer.cornerRadius = 10
         self.layer.masksToBounds = true
+         */
     }
 }

@@ -169,11 +169,13 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     // 写真にして共有
     @IBAction func captureAndShareTableView(_ sender: Any) {
-        if let tableViewImage = tableView.toImage() {
-            let titledImage = addTitleToImage(image: tableViewImage, title: "NotTODO List")
+        let backgroundColor = UIColor(red: 225/255.0, green: 237/255.0, blue: 246/255.0, alpha: 1.0)
+        if let tableViewImage = tableView.toImage(backgroundColor: backgroundColor) {
+            let titledImage = addTitleToImage(image: tableViewImage, title: "NotTODO List", backgroundColor: backgroundColor)
             showShareSheet(image: titledImage, sender: sender)
         }
     }
+
     
     private func showShareSheet(image: UIImage, sender: Any) {
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
@@ -194,16 +196,21 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
         present(activityVC, animated: true, completion: nil)
     }
     
-    private func addTitleToImage(image: UIImage, title: String) -> UIImage {
+    private func addTitleToImage(image: UIImage, title: String, backgroundColor: UIColor) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: image.size.width, height: image.size.height + 50))
         return renderer.image { context in
+            // 背景色を塗りつぶす
+            backgroundColor.setFill()
+            context.fill(CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height + 50))
+            
             // 元の画像を描画
             image.draw(at: CGPoint(x: 0, y: 50))
             
             // タイトルの属性を定義
+            let color = UIColor(red: 82/255, green: 190/255.0, blue: 198/255, alpha: 1.0)
             let attributes: [NSAttributedString.Key: Any] = [
                 .font: UIFont.boldSystemFont(ofSize: 24),
-                .foregroundColor: UIColor.black
+                .foregroundColor: color
             ]
             
             // タイトルを描画する位置を計算
@@ -218,11 +225,15 @@ class NotTODOViewController: UIViewController, UITableViewDelegate, UITableViewD
 
 
 extension UITableView {
-    func toImage() -> UIImage? {
+    func toImage(backgroundColor: UIColor) -> UIImage? {
         let originalBounds = self.bounds
         
         let renderer = UIGraphicsImageRenderer(size: self.contentSize)
         let image = renderer.image { context in
+            // 背景色を塗りつぶす
+            backgroundColor.setFill()
+            context.fill(CGRect(x: 0, y: 0, width: self.contentSize.width, height: self.contentSize.height))
+            
             let savedContentOffset = self.contentOffset
             let savedFrame = self.frame
             let savedBounds = self.bounds
@@ -230,7 +241,6 @@ extension UITableView {
             self.contentOffset = .zero
             self.frame = CGRect(x: 0, y: 0, width: self.contentSize.width, height: self.contentSize.height)
             self.bounds = CGRect(origin: .zero, size: self.contentSize)
-            
             self.layer.render(in: context.cgContext)
             
             self.contentOffset = savedContentOffset
@@ -243,28 +253,3 @@ extension UITableView {
     }
 }
 
-/*
- extension UITableView {
- func toImage() -> UIImage? {
- let originalOffset = self.contentOffset
- let contentHeight = self.contentSize.height
- let frameHeight = self.frame.size.height
- 
- // Set the table view's height to content height
- self.contentSize.height = contentHeight
- self.frame.size.height = contentHeight
- 
- // Render the image
- let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
- let image = renderer.image { context in
- self.layer.render(in: context.cgContext)
- }
- 
- // Restore the original offset and frame height
- self.contentOffset = originalOffset
- self.frame.size.height = frameHeight
- 
- return image
- }
- }
- */

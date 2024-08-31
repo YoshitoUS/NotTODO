@@ -14,6 +14,7 @@ class PickerCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = UIColor(red: 225/255, green: 237/255, blue: 246/255, alpha: 1)
         setupViews()
         setupConstraints()
     }
