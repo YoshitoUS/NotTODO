@@ -25,6 +25,7 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.clear
         tableView.register(PickerCell.self, forCellReuseIdentifier: "PickerCell")
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
@@ -73,7 +74,7 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
                 
                 if cell.notificationSwitch.isOn {
                     print("通知をスケジュールします")
-                    scheduleTimeNotification(for: notTODO, at: cell.datePicker2.date, until: cell.datePicker1.date)
+                    scheduleTimeNotification(for: notTODO, at: cell.datePicker2.date, until: cell.datePicker1.date.addingTimeInterval(60 * 60 * 24))
                 } else {
                     print("通知を削除します")
                     removeTimeNotification(for: notTODO)
@@ -116,6 +117,7 @@ class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDa
         let center = UNUserNotificationCenter.current()
         let content = UNMutableNotificationContent()
         content.title = notTODO.title
+        content.body = "継続できましたか？振り返ってみよう！"
         content.sound = UNNotificationSound.default
 
         var currentDate = Date() // 現在の日付を取得
