@@ -12,6 +12,7 @@
 		3757314F2C129CBC004FD95E /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3757314E2C129CBC004FD95E /* PickerCell.xib */; };
 		375731502C129CBC004FD95E /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3757314D2C129CBC004FD95E /* PickerCell.swift */; };
 		375731552C151419004FD95E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 379E1A3B2C0A164900AFD3FC /* Assets.xcassets */; };
+		377DDBFC2C8D7070002C0623 /* customtextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377DDBFB2C8D7070002C0623 /* customtextfield.swift */; };
 		379E1A272C06C33A00AFD3FC /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379E1A262C06C33A00AFD3FC /* CheckBox.swift */; };
 		379E1A2F2C0A164500AFD3FC /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */; };
 		379E1A312C0A164500AFD3FC /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 379E1A302C0A164500AFD3FC /* SwiftUI.framework */; };
@@ -83,6 +84,7 @@
 /* Begin PBXFileReference section */
 		3757314D2C129CBC004FD95E /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		3757314E2C129CBC004FD95E /* PickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
+		377DDBFB2C8D7070002C0623 /* customtextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customtextfield.swift; sourceTree = "<group>"; };
 		379E1A262C06C33A00AFD3FC /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		379E1A2C2C0A164500AFD3FC /* NotTODOWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotTODOWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		379E1A2E2C0A164500AFD3FC /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -189,6 +191,7 @@
 				379E1A262C06C33A00AFD3FC /* CheckBox.swift */,
 				3757314D2C129CBC004FD95E /* PickerCell.swift */,
 				3757314E2C129CBC004FD95E /* PickerCell.xib */,
+				377DDBFB2C8D7070002C0623 /* customtextfield.swift */,
 			);
 			path = NotTODO;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37FBD16C2C00833C0051B214 /* AddNotTODOController.swift in Sources */,
+				377DDBFC2C8D7070002C0623 /* customtextfield.swift in Sources */,
 				375731502C129CBC004FD95E /* PickerCell.swift in Sources */,
 				37FB827F2C03415E00E6ED0D /* NotTODOTableViewCell.swift in Sources */,
 				37FBD16E2C0083F60051B214 /* NotTODO.swift in Sources */,
@@ -555,7 +559,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NotTODO/NotTODO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.01;
 				DEVELOPMENT_TEAM = NH269XV6X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODO/Info.plist;
@@ -570,7 +574,7 @@
 					"@executable_path/Frameworks",
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Usui.Crayon.NotTODO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -588,7 +592,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NotTODO/NotTODO.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.01;
 				DEVELOPMENT_TEAM = NH269XV6X5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotTODO/Info.plist;
@@ -603,7 +607,7 @@
 					"@executable_path/Frameworks",
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = "$(inherited)";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.01;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Usui.Crayon.NotTODO;
 				PRODUCT_NAME = "$(TARGET_NAME)";

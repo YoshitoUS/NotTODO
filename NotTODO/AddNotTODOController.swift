@@ -4,7 +4,7 @@ import UIKit
 
 class AddNotTODOController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleTextField: CustomTextField!
     
     var onSave: (() -> Void)?
     var notTODO: NotTODO?
